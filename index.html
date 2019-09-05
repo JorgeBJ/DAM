@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+        <!-- meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <script src="js/javaScript.js"></script>
+        <!-- Bootstrap y CSS -->
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/estilos.css">
+    
+        <link href="css/all.css" rel="stylesheet"> <!--  Para los iconos de fontawesome -->
+    
+        <link rel="shortcut icon" href="images/ico.ico" type="image/x-icon" />
+    
+    
+        <title>Proyecto</title>
+  </head>
+  <script>   
+
+  function comprobarObligatorioInline(elemento, elementoError){
+      var valor=elemento.value;
+      var ok=comprobarObligatorio(valor);
+        if(!ok){
+          mostrarError(elementoError);
+        }
+      else {
+          ocultarError(elementoError);
+          }
+          return ok;
+      }
+
+      function comprobarCadenaInline(elemento, elementoError, min, max){
+      var cadena= elemento.value;
+      var ok=comprobarCadena(cadena, min, max);
+      //Este paso es para evitar que si está sin valores salte el error. SI es obligatorio lo controlo con otra funcion
+      if(cadena.length==0)
+        ok=true;
+      if(!ok){
+            mostrarError(elementoError);
+      }
+      else {
+          ocultarError(elementoError);
+      }
+      return ok;
+    }
+
+  function validarEmailInline(elemento, elementoError, min, max){
+    var email=elemento.value;
+    var ok=false;
+    if(email.length==0){
+      ok=true;
+      return ok;
+    }
+    if(!ok){
+      ok=comprobarCadena(email, min, max);
+    }
+    if(!ok){
+      mostrarError(elementoError);
+    }
+    else{
+      ok=validarEmail(email);
+      if(!ok){
+        mostrarError(elementoError);
+      }
+      else{
+        ocultarError(elementoError);
+      }
+    }
+    return ok;
+  }
+
+  
+  
+
+  function comprobarNumeroInline(elemento, minimo, maximo, error){
+    var numero=elemento.value;
+    var ok=true;
+    if(!comprobarNumero(numero, minimo, maximo)){
+      var ok=false;
+      mostrarError(error);
+    }
+    else {
+      ocultarError(error);
+    }
+    return ok;
+  }
+
+  </script>
+  </head>
+  <body>
+    <div class="container-fluid">
+      <header>
+        <div class="row">
+          <div class="col-12">
+            <nav class="navbar navbar-expand-lg">
+              <a class="navbar-brand" href="index.html">  <img src="images/logo2.png" width="250" alt=""></a>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menu">
+                <span class="fas fa-bars"></span>
+              </button>
+            <div class="navbar-collapse collapse" id="menu">
+              <div class="col">
+                <ul class="navbar-nav justify-content-center">
+                  <li class="nav-item">
+                    <a class="nav-link active" href="index.html"><img src="images/iconoGuiaCirculo.png" width="35" alt="">&nbsp;&nbsp;Crear guía</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#"><img src="images/iconoGuiasCirculo.png" width="35" alt="">&nbsp;&nbsp;Guías</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#"> <img src="images/iconoKillerpng" width="35" alt="">&nbsp;&nbsp;Asesinos</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#"> <img src="images/iconoSurvivor.png" width="35" alt="">&nbsp;&nbsp;Supervivientes</a>
+                  </li>
+                  </ul>
+                </div>
+  
+                <div class="col-xs-2">
+                  <ul class="navbar-nav justify-content-center">
+                  <li class="nav-item">
+  
+                    <a class="nav-link" href="#"   data-toggle="modal" data-target="#acceder"> <img src="images/iconoLogin.png" width="35" alt="">&nbsp;&nbsp;&nbsp;Login</a>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <img src="images/iconoIdioma.png" width="35" alt="">&nbsp;&nbsp;&nbsp;Idioma
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                      <a class="dropdown-item" href="#">Castellano</a>
+                      <a class="dropdown-item" href="#">English</a>
+                    </div>
+                </li>
+                </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+        </div>
+      </header>
+    </div>
+      <main>
+        <div class="container"></div>
+        </div>
+      </main>
+  </div>
+
+  <div class="modal fade" id="acceder" tabindex="-1" role="dialog"
+  aria-labelledby="ModalAcceso" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <ul class="nav nav-tabs" id="tabContent">
+        <li class="active tab-acceso">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#acceso" data-toggle="tab">Login</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+        <li class="tab-registro">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#registro" data-toggle="tab">Registro</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+      </ul>
+
+      <div class="tab-content">
+        <div class="tab-pane active" id="acceso">
+          <form class="form" id="formularioAcceso" action="validarAcceso"
+            onsubmit="return validarAcceso()" method="post">
+            <div class="modal-body">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fas fa-at"></i></span>
+                    </div><input type="text"
+                  class="form-control" id="emailAcceso" name="emailAcceso" placeholder="Email">
+                <p class="error alert alert-danger"
+                  id="errorEmailAccesoObligatorio">El email
+                  es obligatorio</p>
+                <p class="error alert alert-danger"
+                  id="errorEmailValido">El email no es válido</p>
+
+              </div>
+              <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-unlock-alt"></i>
+                    </i></span>
+                  </div> <input
+                  type="password" class="form-control" id="passwordAcceso"
+                  name="passwordAcceso" placeholder="Contraseña">
+                <p class="error alert alert-danger"
+                  id="errorPasswordAccesoObligatorio">La contraseña es
+                  obligatoria</p>
+                <p class="error alert alert-danger"
+                  id="errorPasswordAccesoLongitud">La contraseña debe tener entre 4 y 150 caracteres</p>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary"
+                data-dismiss="modal">Cerrar</button>
+              <button type="submit" class="btn btn-danger">Login</button>
+            </div>
+          </form>
+        </div>
+
+        <div class="tab-pane" id="registro">
+          <form class="form" id="formularioRegistro"
+            action="registrarUsuario" onsubmit="return validarRegistro()"
+            method="post">
+            <div class="modal-body">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fas fa-user"></i></span>
+                    </div><input
+                  type="text" class="form-control" id="usuarioRegistro"
+                  name="usuarioRegistro" placeholder="Usuario">
+                <p class="error alert alert-danger"
+                  id="errorUsuarioRegistroObligatorio">El nombre de usuario
+                  es obligatorio</p>
+                <p class="error alert alert-danger"
+                  id="errorUsuarioRegistroLongitud">El nombre de usuario no
+                  debe exceder de los 150 caracteres</p>
+
+              </div>
+              <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-at"></i></span>
+                  </div> <input type="text"
+                  class="form-control" id="emailRegistro" name="emailRegistro" placeholder="Email">
+                <p class="error alert alert-danger"
+                  id="errorEmailRegistroObligatorio">El email
+                  es obligatorio</p>
+                <p class="error alert alert-danger"
+                  id="errorEmaiRegistrolLongitud">El nombre de usuario no
+                  debe exceder de los 150 caracteres</p>
+                <p class="error alert alert-danger"
+                  id="errorEmailRegistroNoValido">El email no es un email
+                  válido</p>
+              </div>
+              <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-unlock-alt"></i>
+                    </i></span>
+                  </div><input
+                  type="password" class="form-control" id="passwordRegistro"
+                  name="passwordRegistro" placeholder="Contraseña">
+                <p class="error alert alert-danger"
+                  id="errorPasswordRegistroObligatorio">La contraseña es
+                  obligatoria</p>
+                <p class="error alert alert-danger"
+                  id="errorPasswordRegistroLongitud">El password no debe
+                  exceder de los 150 caracteres</p>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary"
+                data-dismiss="modal">Cerrar</button>
+              <button type="submit" class="btn btn-danger">Registrarse</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <!-- <div class="modal fade" id="acceder" tabindex="-1" role="dialog" aria-labelledby="modalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="HeaderLogin">Login</h5>
+          <h5 class="modal-title" id="HeaderRegistro">Registro</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span class="cerrar" aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" id="BodyLogin">
+          <form class="form" id="formularioAcceso"  action="" onsubmit="return validarAcceso()">
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-at"></i></span>
+              </div>
+                  <input type="text" class="form-control" id="usuario" placeholder="Email"
+                    onblur="">
+                <p class="error alert alert-danger" id="errorEmail">El nombre de usuario es obligatorio</p>
+              </div>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-unlock-alt"></i>
+                  </i></span>
+                </div>
+              <input type="password" class="form-control" id="password" placeholder="Contraseña">
+            </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-danger">Login</button>
+        </div>
+        </div>
+      </div>
+      <div class="modal-body" id="BodyRegistro">
+        <form class="form" id="formularioRegistro"  action="" onsubmit="return validarRegistro()">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fas fa-user"></i></span>
+            </div>
+                <input type="text" class="form-control" id="usuarioRegistro" placeholder="Nombre"
+                  onblur="">
+              <p class="error alert alert-danger" id="errorNombre">El nombre de usuario es obligatorio</p>
+            </div>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-at"></i></span>
+              </div>
+                  <input type="text" class="form-control" id="usuarioEmail" placeholder="Email"
+                    onblur="">
+                <p class="error alert alert-danger" id="errorEmail">El email no es valido</p>
+              </div>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-unlock-alt"></i>
+                </i></span>
+              </div>
+            <input type="password" class="form-control" id="password" placeholder="Contraseña">
+          </div>
+    </div>
+    </div>
+  </div> -->
+  </div>
+
+  <script src="js/jquery-3.3.1.slim.min.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script>
+    $(function() {
+        $("#cambiarOpcion").click(function() {
+            $("#HeaderRegistro").toggle();
+            $("#HeaderLogin").toggle();
+            $("#formularioRegistro").toggle();
+            $("#formularioRAcceso").toggle();
+        });
+    });
+    </script>
+  </body>
+  <footer>
+  </footer>
+ 
+</html>

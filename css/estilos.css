@@ -1,0 +1,67 @@
+body{
+  background-color: black;  
+  color: white;
+}
+header{
+  color: lightgrey;
+}
+a{
+  color: lightgrey;
+}
+a:hover{
+  color: darkred;
+}
+.error{
+  display: none;
+}
+.fa-bars{
+  color: lightgrey;
+}
+.modal-header{
+  background-color: rgb(31, 32, 32);
+  border-bottom-color: transparent;
+
+}
+.modal-content{
+  border-style: solid;
+  background-color: transparent;
+}
+
+.modal-footer{
+  border-top: 1px solid darkred;
+}
+
+@media screen and (max-width: 766px) {
+
+  .textoMenu {
+    display: inline;
+  }
+}
+.cerrar{
+  color: red;
+}
+
+
+.nav-tabs {
+  border-style: hidden;
+}
+.nav  >li{
+border-top-left-radius: 13px;
+border-top-right-radius: 13px;
+
+}
+#acceso{
+  background-color: rgb(22, 22, 22);
+}
+.tab-acceso{
+  background-color: rgb(22, 22, 22);
+  border-bottom: 1px solid  rgb(22, 22, 22)!important;
+
+}
+#registro{
+  background-color: rgb(40,40,40);
+}
+.tab-registro{
+  background-color: rgb(40,40,40);
+  border-bottom: 1px solid  rgb(40,40,40) !important;
+}
