@@ -4,10 +4,12 @@ body{
 }
 header{
   color: lightgrey;
+  background-color: rgba(89,1,1,0.23);
 }
 a{
   color: lightgrey;
 }
+
 a:hover{
   color: darkred;
 }
@@ -16,6 +18,10 @@ a:hover{
 }
 .fa-bars{
   color: lightgrey;
+}
+
+.modal{
+  background-color: rgba(89,1,1,0.2);
 }
 .modal-header{
   background-color: rgb(31, 32, 32);
@@ -64,4 +70,7 @@ border-top-right-radius: 13px;
 .tab-registro{
   background-color: rgb(40,40,40);
   border-bottom: 1px solid  rgb(40,40,40) !important;
+}
+.error{
+  display: none;
 }

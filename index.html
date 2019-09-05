@@ -70,22 +70,6 @@
     return ok;
   }
 
-  
-  
-
-  function comprobarNumeroInline(elemento, minimo, maximo, error){
-    var numero=elemento.value;
-    var ok=true;
-    if(!comprobarNumero(numero, minimo, maximo)){
-      var ok=false;
-      mostrarError(error);
-    }
-    else {
-      ocultarError(error);
-    }
-    return ok;
-  }
-
   </script>
   </head>
   <body>
@@ -163,27 +147,33 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="fas fa-at"></i></span>
                     </div><input type="text"
-                  class="form-control" id="emailAcceso" name="emailAcceso" placeholder="Email">
+                  class="form-control" id="emailAcceso" name="emailAcceso" placeholder="Email"
+                  onblur="validarEmailInline(this,errorEmailValido, 1, 30),
+                  comprobarCadenaInline(this, errorEmailAccesoObligatorio, 0,20)">
+                </div>
                 <p class="error alert alert-danger"
                   id="errorEmailAccesoObligatorio">El email
                   es obligatorio</p>
                 <p class="error alert alert-danger"
                   id="errorEmailValido">El email no es válido</p>
 
-              </div>
+            
               <div class="input-group mb-3">
                   <div class="input-group-prepend">
                     <span class="input-group-text"><i class="fas fa-unlock-alt"></i>
                     </i></span>
                   </div> <input
                   type="password" class="form-control" id="passwordAcceso"
-                  name="passwordAcceso" placeholder="Contraseña">
+                  name="passwordAcceso" placeholder="Contraseña"
+                  onblur="comprobarObligatorioInline(this,errorPasswordAccesoObligatorio), 
+                  comprobarCadenaInline(this, errorPasswordAccesoLongitud, 1, 30)">
+                </div>
                 <p class="error alert alert-danger"
                   id="errorPasswordAccesoObligatorio">La contraseña es
                   obligatoria</p>
                 <p class="error alert alert-danger"
                   id="errorPasswordAccesoLongitud">La contraseña debe tener entre 4 y 150 caracteres</p>
-              </div>
+              
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary"
@@ -203,44 +193,50 @@
                       <span class="input-group-text"><i class="fas fa-user"></i></span>
                     </div><input
                   type="text" class="form-control" id="usuarioRegistro"
-                  name="usuarioRegistro" placeholder="Usuario">
+                  name="usuarioRegistro" placeholder="Usuario" onblur="comprobarObligatorioInline(this,errorUsuarioRegistroObligatorio)
+                  , comprobarCadenaInline(this,errorUsuarioRegistroLongitud,1,30)"
+                  )>
+                </div>
                 <p class="error alert alert-danger"
                   id="errorUsuarioRegistroObligatorio">El nombre de usuario
                   es obligatorio</p>
                 <p class="error alert alert-danger"
                   id="errorUsuarioRegistroLongitud">El nombre de usuario no
-                  debe exceder de los 150 caracteres</p>
+                  debe exceder de los 30 caracteres</p>
 
-              </div>
+             
               <div class="input-group mb-3">
                   <div class="input-group-prepend">
                     <span class="input-group-text"><i class="fas fa-at"></i></span>
                   </div> <input type="text"
-                  class="form-control" id="emailRegistro" name="emailRegistro" placeholder="Email">
+                  class="form-control" id="emailRegistro" name="emailRegistro" placeholder="Email"
+                  onblur="validarEmailInline(this,errorEmailRegistroNoValido, 1, 30),
+                  comprobarCadenaInline(this, errorEmailRegistroObligatorio, 0,20)">
+                </div>
                 <p class="error alert alert-danger"
                   id="errorEmailRegistroObligatorio">El email
                   es obligatorio</p>
                 <p class="error alert alert-danger"
-                  id="errorEmaiRegistrolLongitud">El nombre de usuario no
-                  debe exceder de los 150 caracteres</p>
-                <p class="error alert alert-danger"
                   id="errorEmailRegistroNoValido">El email no es un email
                   válido</p>
-              </div>
+              
               <div class="input-group mb-3">
                   <div class="input-group-prepend">
                     <span class="input-group-text"><i class="fas fa-unlock-alt"></i>
                     </i></span>
                   </div><input
                   type="password" class="form-control" id="passwordRegistro"
-                  name="passwordRegistro" placeholder="Contraseña">
+                  name="passwordRegistro" placeholder="Contraseña"
+                  onblur="comprobarObligatorioInline(this,errorPasswordRegistroObligatorio), 
+                  comprobarCadenaInline(this, errorPasswordRegistroLongitud, 1, 30)">
+                </div>
                 <p class="error alert alert-danger"
                   id="errorPasswordRegistroObligatorio">La contraseña es
                   obligatoria</p>
                 <p class="error alert alert-danger"
                   id="errorPasswordRegistroLongitud">El password no debe
-                  exceder de los 150 caracteres</p>
-              </div>
+                  exceder de los 50 caracteres</p>
+             
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary"
@@ -320,16 +316,7 @@
   <script src="js/jquery-3.3.1.slim.min.js"></script>
   <script src="js/popper.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
-  <script>
-    $(function() {
-        $("#cambiarOpcion").click(function() {
-            $("#HeaderRegistro").toggle();
-            $("#HeaderLogin").toggle();
-            $("#formularioRegistro").toggle();
-            $("#formularioRAcceso").toggle();
-        });
-    });
-    </script>
+
   </body>
   <footer>
   </footer>
