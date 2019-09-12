@@ -4,7 +4,7 @@ body{
 }
 header{
   color: lightgrey;
-  background-color: rgba(89,1,1,0.23);
+  background-color: black;
 }
 a{
   color: lightgrey;
@@ -26,8 +26,20 @@ a:hover{
 .modal-header{
   background-color: rgb(31, 32, 32);
   border-bottom-color: transparent;
-
 }
+.dropdown-menu{
+  background-color: rgba(89,1,1,0.23);
+  color: white;
+}
+
+.dropdown-item:hover {
+  background-color:darkred; 
+  color:white;
+}
+.dropdown-item{
+color: white;
+}
+
 .modal-content{
   border-style: solid;
   background-color: transparent;
@@ -50,6 +62,9 @@ a:hover{
 
 .nav-tabs {
   border-style: hidden;
+}
+.nav-item{
+  margin-right: 3.5%;
 }
 .nav  >li{
 border-top-left-radius: 13px;
