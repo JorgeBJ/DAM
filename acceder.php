@@ -13,29 +13,26 @@ $email=$_POST["emailAcceso"];
 
 $password=$_POST["passwordAcceso"];
 
-//$hashed_password = password_hash($password, PASSWORD_DEFAULT);
-
-//$orden= "select email, nombre from usuarios where email='".$email."' AND password='".$hashed_password."'";
-
-//Prueba sin hash
-$orden= "select email, nombre from usuarios where email='".$email."' AND password='".$password."'";
-
-
+$orden= "select email, nombre, password from usuarios where email='".$email."'";
 
 $resultado=$conn->query($orden);
 
+$mensaje="<h3>Error. Usuario o contraseña incorrectos</h3><p>". $conn->error."</p>";
 
 if ($resultado->num_rows > 0) {
     $datosUsuario= $resultado->fetch_assoc();
-    $_SESSION["usuario"]=$datosUsuario["email"];
-    $_SESSION["nombre"]=$datosUsuario["nombre"];
-    
-    $mensaje="<h3>Usuario Correcto.</h3>";
-} else {
-    $mensaje="<h3>Error. Usuario o contraseña incorrectos</h3><p>". $conn->error."</p>";
-    ;
-}
-
+    $hash=$datosUsuario["password"];
+    if(password_verify($password, $hash)){
+       // Password correcto!
+       $_SESSION["usuario"]=$datosUsuario["email"];
+       $_SESSION["nombre"]=$datosUsuario["nombre"];
+       //Solo si es correcto cambio el mensaje por defecto.
+       $mensaje="<h3>Usuario Correcto.</h3>";
+    }  
+    else {
+      $mensaje="El password no coincide";
+  }
+} 
 
 $conn->close();
 ?>
@@ -53,9 +50,8 @@ $conn->close();
     </div>
 
 <script>
-  //Script para redirigir a index.php tras x segundos
 
-//setTimeout(function(){ window.location.href="index.php"; }, 4000); 
+//Script para redirigir a index.php tras x segundos
 setTimeout(() => {
   window.location.href="index.php"; 
   exit();

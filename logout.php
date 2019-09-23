@@ -24,5 +24,3 @@ session_destroy();
 //Script para redirigir a index.php tras 4 segundos
 setTimeout(function(){ window.location="<?= 'index.php' ?>"; }, 2000); 
 </script>
-    
-

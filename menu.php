@@ -46,15 +46,15 @@
     var email=elemento.value;
     var ok=false;
     if(email.length==0){
-      ok=true;
+      ok=false;
       return ok;
     }
-    if(!ok){
-      ok=comprobarCadena(email, min, max);
-    }
-    if(!ok){
-      mostrarError(elementoError);
-    }
+    // if(!ok){
+    //   ok=comprobarCadena(email, min, max);
+    // }
+    // if(!ok){
+    //   mostrarError(elementoError);
+    // }
     else{
       ok=validarEmail(email);
       if(!ok){
@@ -186,7 +186,7 @@
 
         <div class="tab-pane" id="registro">
           <form class="form" id="formularioRegistro"
-            action="registrarUsuario" onsubmit="return validarRegistro()"
+            action="registrarUsuario.php" onsubmit="return validarRegistro()"
             method="post">
             <div class="modal-body">
                 <div class="input-group mb-3">
@@ -211,8 +211,8 @@
                     <span class="input-group-text"><i class="fas fa-at"></i></span>
                   </div> <input type="text"
                   class="form-control" id="emailRegistro" name="emailRegistro" placeholder="Email"
-                  onblur="validarEmailInline(this,errorEmailRegistroNoValido, 1, 30),
-                  comprobarCadenaInline(this, errorEmailRegistroObligatorio, 0,20)">
+                  onblur="validarEmailInline(this,errorEmailRegistroNoValido, 1, 150),
+                  comprobarCadenaInline(this, errorEmailRegistroObligatorio, 0,150)">
                 </div>
                 <p class="error alert alert-danger"
                   id="errorEmailRegistroObligatorio">El email
