@@ -81,7 +81,7 @@
               <div class="col-sm-10">
                 <ul class="navbar-nav justify-content-center">
                   <li class="nav-item">
-                    <a class="nav-link active" href="index.php"><img src="images/iconoGuiaCirculo.png" width="40" alt="">&nbsp;&nbsp;Crear guía</a>
+                    <a class="nav-link active" href="crearGuia.php"><img src="images/iconoGuiaCirculo.png" width="40" alt="">&nbsp;&nbsp;Crear guía</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="#"><img src="images/iconoGuiasCirculo.png" width="40" alt="">&nbsp;&nbsp;Guías</a>

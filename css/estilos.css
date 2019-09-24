@@ -1,6 +1,6 @@
 body{
   background-color: black;  
-  color: white;
+  color: dimgray;
 }
 header{
   color: lightgrey;
@@ -88,4 +88,27 @@ border-top-right-radius: 13px;
 }
 .error{
   display: none;
+}
+
+#asesino{
+  border-style: solid;
+  border-color: darkred;
+}
+
+#superviviente{
+  border-style: solid;
+  border-color: darkolivegreen;
+}
+.card{
+  background-color: black;
+  margin: 2%;
+}
+.hover-div:hover{
+  border-style: solid;
+  border-radius: 5%;
+  border-color: darkred;
+
+}
+.hover-div{
+  max-width: none !important;
 }

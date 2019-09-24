@@ -4,7 +4,7 @@
 
 
 //Creacion de la conexion
-function create_con{
+function create_con(){
     $serverName="localhost";
     $userName="root";
     $pw="";
