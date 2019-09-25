@@ -7,22 +7,24 @@
     include_once 'menu.php';
     include_once 'conexion.php';
 
+    $conn = create_con();
+
     $nombre=$_POST["usuarioRegistro"];
     $email=$_POST["emailRegistro"];
     $passwordRegistro=$_POST["passwordRegistro"];
    // $password=$_POST["passwordRegistro"]; 
     $password = password_hash($passwordRegistro, PASSWORD_DEFAULT);
 
-$orden= "INSERT INTO usuarios(nombre, email, password) VALUES('".$nombre."', '".$email."','".$password."')";
+$query= "INSERT INTO usuarios(nombre, email, password) VALUES('".$nombre."', '".$email."','".$password."')";
 
-
-$resultado=$conn->query($orden);
+$resultado=$conn->query($query);
 
 if ($resultado === TRUE) {
     $mensaje="<h1>Registrado con éxito</h1>";
 } else {
     $mensaje="<h1>No se ha podido realizar el registro </h1><p>" . $conn->error."</p>";
 }
+kill_con($conn);
 ?>
 
 <body>

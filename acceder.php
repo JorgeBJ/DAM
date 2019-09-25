@@ -1,5 +1,6 @@
 <?php
   session_start();
+  require("conexion.php");
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -7,15 +8,14 @@
 	include 'menu.php';
 ?>
 <?php
- include 'conexion.php'; 
-
+ 
+$conn = create_con();
 $email=$_POST["emailAcceso"];
-
 $password=$_POST["passwordAcceso"];
 
-$orden= "select email, nombre, password from usuarios where email='".$email."'";
+$query = "select email, nombre, password from usuarios where email='".$email."'";
 
-$resultado=$conn->query($orden);
+$resultado=$conn->query($query);
 
 $mensaje="<h3>Error. Usuario o contraseña incorrectos</h3><p>". $conn->error."</p>";
 
@@ -30,11 +30,11 @@ if ($resultado->num_rows > 0) {
        $mensaje="<h3>Usuario Correcto.</h3>";
     }  
     else {
-      $mensaje="El password no coincide";
+      $mensaje="La contraseña no es correcta";
   }
 } 
 
-$conn->close();
+kill_con($conn);
 ?>
 
   <body>
