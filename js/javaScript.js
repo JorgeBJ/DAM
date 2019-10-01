@@ -46,3 +46,54 @@ function comprobarCheckBox(elementoCheckBox){
   }
   return ok;
 }
+
+/* $(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+  }) */
+
+function seleccionarAsesino(seleccionado, killerID, poderDiv){
+  var buildAsesino = document.getElementById("buildAsesino");
+  buildAsesino.style.display = "inline";
+  var elementosAsesinos = document.querySelectorAll("div.hover-div");
+  //alert(killerID);
+  for(i=0; i<elementosAsesinos.length; i++){
+    elementosAsesinos[i].classList.remove("seleccionado");
+  }
+  seleccionado.classList.add("seleccionado");
+  //Abro un modal con los perks que hay en la BBDD
+  
+  //El poder no se puede elegir. Muestro el poder en el div coreespondiente
+ 
+  conexion1=new XMLHttpRequest();
+  conexion1.onreadystatechange = procesarDatos;
+  conexion1.open('GET','getPower.php?id='+killerID, true);
+  conexion1.send();
+
+  //Los addons del poder si pueden elegirse
+  
+}
+
+function procesarDatos(){
+  var resultados = document.getElementById("power");
+  if(conexion1.readyState == 4)
+  {
+    var datos=conexion1.responseText;
+    var obj = JSON.parse(datos);
+    resultados.innerHTML = 
+    "<div class='row'>"+
+    "<h3>"+obj.name+"<h3>"+
+   "</div>"+
+   "<div class='row'>"+
+   "<img class='poder' src='"+obj.powerLogo+"' width='100' alt=''>"+
+   "</div>"+
+  "</div>";
+  } 
+  else 
+  {
+    resultados.innerHTML = "Cargando...";
+  }
+}
+
+function mostrarListaPerks(elemento){
+  alert("Mostrar la lista de perks al hacer click");
+}

@@ -91,24 +91,44 @@ border-top-right-radius: 13px;
 }
 
 #asesino{
-  border-style: solid;
+  border-style: hidden;
   border-color: darkred;
+  
 }
 
 #superviviente{
   border-style: solid;
   border-color: darkolivegreen;
+  display: none;
 }
-.card{
-  background-color: black;
-  margin: 2%;
-}
-.hover-div:hover{
-  border-style: solid;
-  border-radius: 5%;
-  border-color: darkred;
 
+.hover-div:hover{
+  box-shadow: 2px 2px 2px red inset, -2px -2px 2px red inset;
 }
 .hover-div{
   max-width: none !important;
+}
+.seleccionado{
+  box-shadow: 2px 2px 2px white inset, -2px -2px 2px white inset;
+}
+
+#buildAsesino{
+  display: none;
+}
+
+.poder{
+  border-style: solid;
+  border-color: darkred;
+  background-color: rgba(89,1,1,0.23)
+}
+
+.perk{
+  border-style:solid; 
+  border-color: darkred;
+  background-color: rgba(89,1,1,0.23)
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
 }
