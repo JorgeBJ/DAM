@@ -1,9 +1,9 @@
 <?php
 require("conexion.php");
-//id`, `name`, `killerId`, `perk1Id`, `perk2Id`, `perk3Id`, `perk4Id`, `addon1Id`, `addon2Id`
     if isset( $_POST['name'] && $_POST['killerId']){
         $conn = create_con();
         $name = $_POST['name'];
+        $killerId = $_POST['killerId'];
         $perk1 = $_POST['perk1'];
         $perk2 = $_POST['perk2'];
         $perk3 = $_POST['perk3'];
@@ -12,7 +12,6 @@ require("conexion.php");
         $addon2 = $_POST['addon2'];
         $fp = checkFp($killerId, $name, $perk1, $perk2, $perk3, $perk4, $conn);
         $noob = checkNoobie($killerId, $name, $perk1, $perk2, $perk3, $perk4, $conn);
-        //INSERT INTO `killer_build`(`id`, `name`, `killerId`, `perk1Id`, `perk2Id`, `perk3Id`, `perk4Id`, `addon1Id`, `addon2Id`, `isF2P`, `isNoob`) VALUES ([value-1],[value-2],[value-3],[value-4],[value-5],[value-6],[value-7],[value-8],[value-9],[value-10],[value-11])
         $query = 'INSERT INTO `killer_build`(`name`, `killerId`, `perk1Id`, `perk2Id`, `perk3Id`, `perk4Id`, `addon1Id`, `addon2Id`, `isF2P`, `isNoob`) VALUES ('.$name.','.$perk1.','.$perk2.','.$perk3.','.$perk4.','.$addon1.','.$addon2.','.$fp.','.$noob.')';
     }else{
         die;
