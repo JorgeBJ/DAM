@@ -1,3 +1,4 @@
+
 function comprobarObligatorio(valor){
   var ok=false;
   if(valor!=""){
@@ -79,19 +80,29 @@ function procesarDatos(){
   {
     var datos=conexion1.responseText;
     var obj = JSON.parse(datos);
+    powerDesc=obj.powerDesc;
+    powerName=obj.name;
     resultados.innerHTML = 
     "<div class='row'>"+
     "<h3>"+obj.name+"<h3>"+
    "</div>"+
    "<div class='row'>"+
-   "<img class='poder' src='"+obj.powerLogo+"' width='100' alt=''>"+
+   "<img class='poder' src='"+obj.powerLogo+"' width='150' alt='' onclick='mostrarPowerDesc()' data-toggle='modal' data-target='#powerDesc'>"+
    "</div>"+
-  "</div>";
+   "</div>";
   } 
   else 
   {
     resultados.innerHTML = "Cargando...";
   }
+}
+
+function mostrarPowerDesc(){
+  parrafoPoder=document.getElementById("descripcionPoder");
+  parrafoPoder.innerHTML = powerDesc;
+  nombrePoder=document.getElementById("nombrePoder");
+  nombrePoder.innerHTML = powerName;
+  
 }
 
 function mostrarListaPerks(elemento){

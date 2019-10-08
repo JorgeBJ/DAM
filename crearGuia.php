@@ -5,6 +5,10 @@ require("conexion.php");
 ?>
 <!DOCTYPE html>
 <html lang="es">
+<script>
+var powerDesc="";
+var powerName="";
+</script>
   
 <?php
 	include 'menu.php';
@@ -41,9 +45,8 @@ require("conexion.php");
                 while (mysqli_stmt_fetch($stmt)) {
                   echo  
                   "<div class='col-3 text-center hover-div' style='margin-bottom: 2.5rem;'  onclick='seleccionarAsesino(this, $killerID , power)'>
-                    <img data-toggle='tooltip' data-placement='top' title='".$name."' src='$photo' width='100' alt=''>
+                    <img title='".$name."' src='$photo' width='100' alt=''>
                   </div>";
-                
                 }
                 echo "</div>";
         
@@ -65,7 +68,7 @@ require("conexion.php");
                    <h3>Poder<h3>
                   </div>
                   <div class="row">
-                  <img class="poder" src="images/powerIcon.png" width="100" alt="">
+                  <img class="poder" src="images/powerIcon.png" width="150" alt="">
                   </div>
                 </div>
                 <div class="col-3 text-center" id="powerAddon1">
@@ -73,7 +76,7 @@ require("conexion.php");
                     <h3>Addon1<h3>
                   </div>
                   <div class="row">
-                  <img class="poder" src="images/powerIcon.png" width="100" alt="">
+                  <img class="poder" src="images/powerIcon.png" width="150" alt="">
                   </div>
                 </div>
                 <div class="col-3  text-center" id="powerAddon2">
@@ -81,7 +84,7 @@ require("conexion.php");
                     <h3>Addon2<h3>
                   </div>
                   <div class="row">
-                  <img class="poder" src="images/powerIcon.png" width="100" alt="">
+                  <img class="poder" src="images/powerIcon.png" width="150" alt="">
                   </div>
                 </div>
               </div>
@@ -97,7 +100,7 @@ require("conexion.php");
                   <br>
                 </div>
                   <div class="row">
-                  <img class="perk" src="images/perkIcon.png" width="100" alt="">
+                  <img class="perk" src="images/perkIcon.png" width="150" alt="">
                   </div>
                 </div>
                 <div class="col-2 text-center  offset-sm-1" id="perk2">
@@ -108,7 +111,7 @@ require("conexion.php");
                    <br>
                   </div>
                   <div class="row">
-                  <img class="perk" src="images/perkIcon.png" width="100" alt="">
+                  <img class="perk" src="images/perkIcon.png" width="150" alt="">
                   </div>
                 </div>
                 <div class="col-2 text-center  offset-sm-1" id="perk3">
@@ -119,7 +122,7 @@ require("conexion.php");
                   <br>
                 </div>
                 <div class="row">
-                  <img class="perk" src="images/perkIcon.png" width="100" alt="">
+                  <img class="perk" src="images/perkIcon.png" width="150" alt="">
                 </div>
                 </div>
                 <div class="col-2 text-center  offset-sm-1" id="perk4">
@@ -130,7 +133,7 @@ require("conexion.php");
                   <br>
                 </div>
                   <div class="row">
-                  <img class="perk" src="images/perkIcon.png" width="100" alt="">
+                  <img class="perk" src="images/perkIcon.png" width="150" alt="">
                   </div>
                 </div>
               </div>
@@ -145,7 +148,30 @@ require("conexion.php");
           </div>
         </div>
         
-  </div>            
+  </div>        
+
+    <!-- Modal -->
+  <div class="modal fade" id="powerDesc" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 id="nombrePoder"><h3>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <p id="descripcionPoder">
+
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>    
 
 
   <script src="js/jquery-3.3.1.slim.min.js"></script>
