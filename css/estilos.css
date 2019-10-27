@@ -23,6 +23,9 @@ a:hover{
 .modal{
   background-color: rgba(89,1,1,0.2);
 }
+.modal p{
+  color: white;
+}
 .modal-header{
   background-color: rgb(31, 32, 32);
   border-bottom-color: transparent;
@@ -48,6 +51,7 @@ color: white;
 .modal-footer{
   border-top: 1px solid darkred;
 }
+
 
 @media screen and (max-width: 766px) {
 

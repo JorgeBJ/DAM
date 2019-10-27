@@ -71,9 +71,9 @@ var powerName="";
                   <img class="poder" src="images/powerIcon.png" width="150" alt="">
                   </div>
                 </div>
-                <div class="col-3 text-center" id="powerAddon1">
+                <div class="col-3 text-center" id="powerAddon1" data-toggle='modal' data-target='#modalAddon1' onclick="mostrarAddons()">
                   <div class="row">
-                    <h3>Addon1<h3>
+                    <h3>Addon 1<h3>
                   </div>
                   <div class="row">
                   <img class="poder" src="images/powerIcon.png" width="150" alt="">
@@ -150,11 +150,9 @@ var powerName="";
         
   </div>        
 
-    <!-- Modal -->
+    <!-- Modal power desc-->
   <div class="modal fade" id="powerDesc" role="dialog">
     <div class="modal-dialog">
-    
-      <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
           <h3 id="nombrePoder"><h3>
@@ -173,6 +171,26 @@ var powerName="";
     </div>
   </div>    
 
+   <!-- Modal Addon1-->
+   <div class="modal fade" id="modalAddon1" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Seleccionar Addon<h3>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <p>
+            Addon1 Selección
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>    
 
   <script src="js/jquery-3.3.1.slim.min.js"></script>
   <script src="js/popper.min.js"></script>

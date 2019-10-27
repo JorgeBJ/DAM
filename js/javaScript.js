@@ -47,11 +47,6 @@ function comprobarCheckBox(elementoCheckBox){
   }
   return ok;
 }
-
-/* $(function () {
-  $('[data-toggle="tooltip"]').tooltip()
-  }) */
-
 function seleccionarAsesino(seleccionado, killerID, poderDiv){
   var buildAsesino = document.getElementById("buildAsesino");
   buildAsesino.style.display = "inline";
@@ -107,4 +102,8 @@ function mostrarPowerDesc(){
 
 function mostrarListaPerks(elemento){
   alert("Mostrar la lista de perks al hacer click");
+}
+
+function mostrarAddons(){
+  
 }
