@@ -13,6 +13,7 @@ require("conexion.php");
         $fp = checkFp($killerId, $name, $perk1, $perk2, $perk3, $perk4, $conn);
         $noob = checkNoobie($killerId, $name, $perk1, $perk2, $perk3, $perk4, $conn);
         $query = 'INSERT INTO `killer_build`(`name`, `killerId`, `perk1Id`, `perk2Id`, `perk3Id`, `perk4Id`, `addon1Id`, `addon2Id`, `isF2P`, `isNoob`) VALUES ('.$name.','.$perk1.','.$perk2.','.$perk3.','.$perk4.','.$addon1.','.$addon2.','.$fp.','.$noob.')';
+        mysqli_query($conn, $query);
     }else{
         die;
     }
