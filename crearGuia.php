@@ -8,6 +8,7 @@ require("conexion.php");
 <script>
 var powerDesc="";
 var powerName="";
+var addonArray= new Array();
 </script>
   
 <?php
@@ -20,12 +21,14 @@ var powerName="";
             <br>
           </div>
         </div>
-        <div class="row">
+        <div class="row tipoGuia">
           <div class="col-1">
             <h3>Asesino<h3>
+            <img id="imagenAsesino" title='Crear Guia Asesino' src='images\iconoAsesino.png' width='200' alt='' onclick='mostrarCreacionAsesinos(this, imagenSuperviviente)'>  
           </div>
           <div class="col-1">
             <h3>Superviviente<h3>
+            <img id="imagenSuperviviente" title='Crear Guia Superviviente' src='images\iconoSuperviviente.png' width='200' alt='' onclick='mostrarCreacionSupervivientes(this,imagenAsesino)'>  
           </div>
         </div>
         <div class="row">
@@ -33,19 +36,19 @@ var powerName="";
             <?php
               $conn = create_con();
               
-              $query = "select name, photo , id from killers order by id";
+              $query = "select killerName, photo , id from killers order by id";
 
               if ($stmt = mysqli_prepare($conn, $query)) {
 
                 echo "<div class='row'>";
 
                 mysqli_stmt_execute($stmt);
-                mysqli_stmt_bind_result($stmt, $name, $photo , $killerID);
+                mysqli_stmt_bind_result($stmt, $killerName, $photo , $killerID);
 
                 while (mysqli_stmt_fetch($stmt)) {
                   echo  
                   "<div class='col-3 text-center hover-div' style='margin-bottom: 2.5rem;'  onclick='seleccionarAsesino(this, $killerID , power)'>
-                    <img title='".$name."' src='$photo' width='100' alt=''>
+                    <img title='".$killerName."' src='$photo' width='100' alt=''>
                   </div>";
                 }
                 echo "</div>";
@@ -59,92 +62,114 @@ var powerName="";
           </div>
             <div class="col-9" id="buildAsesino">
               <div class="row">
-              <br><br>
+                <br><br>
               </div>
               <div class="row">
                 <div class="col-3 offset-sm-2" id="power">
-
                   <div class="row"> 
-                   <h3>Poder<h3>
+                     <h3>Poder<h3>
                   </div>
                   <div class="row">
-                  <img class="poder" src="images/powerIcon.png" width="150" alt="">
+                     <img class="poder" src="images/powerIcon.png" width="150" alt="">
                   </div>
                 </div>
-                <div class="col-3 text-center" id="powerAddon1" data-toggle='modal' data-target='#modalAddon1' onclick="mostrarAddons()">
+                <div class="col-3 text-center" id="powerAddon1" data-toggle='modal' data-target='#modalAddon1'>
                   <div class="row">
-                    <h3>Addon 1<h3>
+                    <h3 id="seleccionAddon1">Addon 1<span>ID</span></h3>
                   </div>
                   <div class="row">
-                  <img class="poder" src="images/powerIcon.png" width="150" alt="">
+                   <img class="poder" src="images/powerIcon.png" width="150" alt="IconoAddon" id="iconoPowerAddon1">
                   </div>
                 </div>
-                <div class="col-3  text-center" id="powerAddon2">
-                <div class="row">
-                    <h3>Addon2<h3>
+                <div class="col-3  text-center" id="powerAddon2" data-toggle='modal' data-target='#modalAddon2'>
+                  <div class="row">
+                    <h3 id="seleccionAddon2">Addon2 <span>ID</span><h3>
                   </div>
                   <div class="row">
-                  <img class="poder" src="images/powerIcon.png" width="150" alt="">
+                   <img class="poder" src="images/powerIcon.png" width="150" alt="IconoAddon" id="iconoPowerAddon2">
                   </div>
                 </div>
               </div>
+              
               <div class="row">
               <br><br>
               </div>
               <div class="row">
-                <div class="col-2 text-center offset-sm-1" id="perk1" onclick="mostrarListaPerks(this)"> 
-                <div class="row">
-                    <h3>Perk1<h3>
-                  </div>
-                <div class="row">
-                  <br>
-                </div>
+                <div class="col-2 text-center offset-sm-1" id="perk1"  data-toggle='modal' data-target='#modalPerk1'> 
                   <div class="row">
-                  <img class="perk" src="images/perkIcon.png" width="150" alt="">
-                  </div>
-                </div>
-                <div class="col-2 text-center  offset-sm-1" id="perk2">
-                <div class="row">
-                    <h3>Perk2<h3>
+                      <h3 id="seleccionPerk1">Perk 1</h3>
                   </div>
                   <div class="row">
                    <br>
                   </div>
                   <div class="row">
-                  <img class="perk" src="images/perkIcon.png" width="150" alt="">
+                  <img class="perk" src="images/perkIcon.png" width="150" alt="" id="iconoPerk1">
+                  </div>
+                 </div>
+                <div class="col-2 text-center  offset-sm-1" id="perk2" data-toggle='modal' data-target='#modalPerk2'>
+                  <div class="row">
+                    <h3 id="seleccionPerk2">Perk 2</h3>
+                  </div>
+                  <div class="row">
+                   <br>
+                  </div>
+                  <div class="row">
+                  <img class="perk" src="images/perkIcon.png" width="150" alt="" id="iconoPerk2">
                   </div>
                 </div>
-                <div class="col-2 text-center  offset-sm-1" id="perk3">
+                <div class="col-2 text-center  offset-sm-1" id="perk3" data-toggle='modal' data-target='#modalPerk3'>
                 <div class="row">
-                    <h3>Perk3<h3>
+                    <h3 id="seleccionPerk3">Perk 3</h3>
                 </div>
                 <div class="row">
                   <br>
                 </div>
                 <div class="row">
-                  <img class="perk" src="images/perkIcon.png" width="150" alt="">
+                  <img class="perk" src="images/perkIcon.png" width="150" alt="" id="iconoPerk3">
                 </div>
                 </div>
-                <div class="col-2 text-center  offset-sm-1" id="perk4">
+                <div class="col-2 text-center  offset-sm-1" id="perk4" data-toggle='modal' data-target='#modalPerk4'>
                 <div class="row">
-                    <h3>Perk4<h3>
+                    <h3 id="seleccionPerk4">Perk 4</h3>
                   </div>
                   <div class="row">
                   <br>
                 </div>
                   <div class="row">
-                  <img class="perk" src="images/perkIcon.png" width="150" alt="">
+                  <img class="perk" src="images/perkIcon.png" width="150" alt="" id="iconoPerk4">
                   </div>
                 </div>
               </div>
           </div>
+
         <div class="row">
-          <br>
-        </div>  
-        <div class="row">
-          <div id="superviviente" class="col-8 offset-2 text-center">
-            <br>
-            <h1>Sólo visible si se selecciona la opción superviviente<h1>
+          <div id="superviviente" class="col-3 text-center">
+            <?php
+              $conn = create_con();
+              
+              $query = "select survivorName, photo , id from survivors order by id";
+
+              if ($stmt = mysqli_prepare($conn, $query)) {
+
+                echo "<div class='row'>";
+
+                mysqli_stmt_execute($stmt);
+                mysqli_stmt_bind_result($stmt, $survivorName, $photo , $survivorID);
+
+                while (mysqli_stmt_fetch($stmt)) {
+                  echo  
+                  "<div class='col-3 text-center hover-div' style='margin-bottom: 2.5rem;'  onclick='seleccionarAsesino(this, $survivorID , power)'>
+                    <img title='".$survivorName."' src='$photo' width='100' alt=''>
+                  </div>";
+                }
+                echo "</div>";
+        
+                mysqli_stmt_close($stmt);
+            }
+            
+            
+            kill_con($conn);
+            ?>
           </div>
         </div>
         
@@ -160,7 +185,6 @@ var powerName="";
         </div>
         <div class="modal-body">
           <p id="descripcionPoder">
-
           </p>
         </div>
         <div class="modal-footer">
@@ -180,9 +204,27 @@ var powerName="";
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         <div class="modal-body">
-          <p>
-            Addon1 Selección
-          </p>
+            <div class="row" id="bodyAddon1">
+           </div>
+        </div> 
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>    
+
+       <!-- Modal Addon2-->
+    <div class="modal fade" id="modalAddon2" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Seleccionar Addon2<h3>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div class="row" id="bodyAddon2">
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
@@ -191,6 +233,85 @@ var powerName="";
       
     </div>
   </div>    
+</div>
+     <!-- Modal perk1-->
+     <div class="modal fade" id="modalPerk1" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Seleccionar Perk 1</h3>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div class="row" id="bodyPerk1">
+           </div>
+        </div> 
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>  
+   <!-- Modal perk2-->
+   <div class="modal fade" id="modalPerk2" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Seleccionar Perk 2</h3>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div class="row" id="bodyPerk2">
+           </div>
+        </div> 
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>  
+     <!-- Modal perk3-->
+     <div class="modal fade" id="modalPerk3" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Seleccionar Perk 3</h3>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div class="row" id="bodyPerk3">
+           </div>
+        </div> 
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>  
+     <!-- Modal perk4-->
+     <div class="modal fade" id="modalPerk4" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Seleccionar Addon</h3>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div class="row" id="bodyPerk4">
+           </div>
+        </div> 
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>  
+
+  
 
   <script src="js/jquery-3.3.1.slim.min.js"></script>
   <script src="js/popper.min.js"></script>

@@ -133,7 +133,7 @@
   <div class="modal fade" id="acceder" tabindex="-1" role="dialog"
   aria-labelledby="ModalAcceso" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
+    <div class="modal-content modalBackgroundTransparente">
       <ul class="nav nav-tabs" id="tabContent">
         <li class="active tab-acceso">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#acceso" data-toggle="tab">Login</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
         <li class="tab-registro">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#registro" data-toggle="tab">Registro</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>

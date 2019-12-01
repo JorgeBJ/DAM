@@ -30,10 +30,10 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `items` (
   `id` int(11) NOT NULL,
-  `name` text NOT NULL,
+  `itemName` text NOT NULL,
   `logo` text NOT NULL,
   `rarity` text NOT NULL,
-  `desc` text NOT NULL,
+  `itemDesc` text NOT NULL,
   `lore` text DEFAULT NULL,
   `itemType` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -42,7 +42,7 @@ CREATE TABLE `items` (
 -- Volcado de datos para la tabla `items`
 --
 
-INSERT INTO `items` (`id`, `name`, `logo`, `rarity`, `desc`, `lore`, `itemType`) VALUES
+INSERT INTO `items` (`id`, `itemName`, `logo`, `rarity`, `itemDesc`, `lore`, `itemType`) VALUES
 (1, 'Chinese Firecracker', 'https://gamepedia.cursecdn.com/deadbydaylight_gamepedia_en/thumb/7/73/IconEventItem_chineseFirecracker.png/64px-IconEventItem_chineseFirecracker.png?version=fd6c4361819b8be749cb7d8d94cd8ad4', 'Event', 'A row of small explosive devices wrapped in heavy paper casing. Detonates into loud bangs and intense light flashes.\n\n-Can be used as a distraction, as a blinding device or to celebrate.', NULL, 1),
 (2, 'Winter Party Starter', 'https://gamepedia.cursecdn.com/deadbydaylight_gamepedia_en/thumb/8/84/IconEventItem_winterPartyStarter.png/64px-IconEventItem_winterPartyStarter.png?version=23d2a2375941110a3e94a02fa2cd5413', 'Event', 'A small, highly-explosive dinner table decoration. Detonates into loud bangs and intense light flashes.\n\n-Can be used as a distraction, as a blinding device or to celebrate.', NULL, 1),
 (3, 'Third Year Party Starter', 'https://gamepedia.cursecdn.com/deadbydaylight_gamepedia_en/thumb/6/63/IconEventItem_partyPopper.png/64px-IconEventItem_partyPopper.png?version=54b86dd58e0cd37324d0ff86954913fb', 'Event', 'A small, highly-explosive dinner table decoration. Detonates into loud bangs and intense light flashes, and playful confetti.\n\n-Can be used as a distraction, as a blinding device or to celebrate our three years together.', '\"Happy Anniversary! Here\'s to our three years together!\" — The Dead by Daylight Team', 1),
@@ -75,10 +75,10 @@ INSERT INTO `items` (`id`, `name`, `logo`, `rarity`, `desc`, `lore`, `itemType`)
 
 CREATE TABLE `items_addons` (
   `id` int(11) NOT NULL,
-  `name` text NOT NULL,
+  `itemAddonName` text NOT NULL,
   `logo` text NOT NULL,
   `rarity` text NOT NULL,
-  `desc` text NOT NULL,
+  `itemAddonDesc` text NOT NULL,
   `itemType` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -86,7 +86,7 @@ CREATE TABLE `items_addons` (
 -- Volcado de datos para la tabla `items_addons`
 --
 
-INSERT INTO `items_addons` (`id`, `name`, `logo`, `rarity`, `desc`, `itemType`) VALUES
+INSERT INTO `items_addons` (`id`, `itemAddonName`, `logo`, `rarity`, `itemAddonDesc`, `itemType`) VALUES
 (1, 'Wide Lens', 'https://gamepedia.cursecdn.com/deadbydaylight_gamepedia_en/thumb/9/9b/FulliconAddon_wideLens.png/64px-FulliconAddon_wideLens.png?version=f1e184dfa077279c6816f6ddbcf3efdd', 'Common', 'A thing wide lens in perfect condition. \r\nDesigned to spread the Flashlight beam at the cost of reducing its range fo effectiveness.\r\n\r\n-Moderately widens the Flashlight beam.\r\n\r\n-Slightly decreases the range of the Flashlight beam.', 2),
 (2, 'Power Bulb	', 'https://gamepedia.cursecdn.com/deadbydaylight_gamepedia_en/thumb/b/bc/FulliconAddon_powerBulb.png/64px-FulliconAddon_powerBulb.png?version=ce8062f1f5e7f247b0be5f2843d0653b', 'Common', 'A tiny Flashlight bulb that packs more wattage for a brighter, more powerful light beam.\r\n\r\n-Slightly tightens the radius of the Flashlight beam.\r\n\r\n-Slightly increases the beam\'s visual brightness.\r\n\r\n-Slightly increases the Blindness duration.', 2),
 (3, 'Leather Grip', 'https://gamepedia.cursecdn.com/deadbydaylight_gamepedia_en/thumb/0/0c/FulliconAddon_leatherGrip.png/64px-FulliconAddon_leatherGrip.png?version=49f41cf0c979ea1705b4c812cdd197b4', 'Common', 'A leather strip wrapped around the Flashlight for more grip.\r\n\r\n-Slightly increases the Flashlight\'s accuracy.', 2),
@@ -353,7 +353,7 @@ CREATE TABLE `killer_build` (
 
 CREATE TABLE `killer_perks` (
   `id` int(11) NOT NULL,
-  `name` text NOT NULL,
+  `killerName` text NOT NULL,
   `killerId` int(11) DEFAULT NULL,
   `desc` text NOT NULL,
   `logo` int(11) NOT NULL
@@ -377,8 +377,8 @@ INSERT INTO `killer_perks` (`id`, `name`, `killerId`, `desc`, `logo`) VALUES
 
 CREATE TABLE `power_addons` (
   `id` int(11) NOT NULL,
-  `name` text NOT NULL,
-  `logo` text NOT NULL,
+  `killerName` text NOT NULL,
+  `killerLogo` text NOT NULL,
   `killerId` int(11) NOT NULL,
   `rarity` text NOT NULL,
   `desc` text NOT NULL
@@ -392,9 +392,9 @@ CREATE TABLE `power_addons` (
 
 CREATE TABLE `survivors` (
   `id` int(11) NOT NULL,
-  `name` text NOT NULL,
+  `survivorName` text NOT NULL,
   `photo` text NOT NULL,
-  `desc` text NOT NULL
+  `survivorDesc` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -405,7 +405,7 @@ CREATE TABLE `survivors` (
 
 CREATE TABLE `survivor_build` (
   `id` int(11) NOT NULL,
-  `name` text NOT NULL,
+  `survivorBuildName` text NOT NULL,
   `survivorId` int(11) DEFAULT NULL,
   `perk1Id` int(11) DEFAULT NULL,
   `perk2Id` int(11) DEFAULT NULL,
@@ -426,9 +426,9 @@ CREATE TABLE `survivor_build` (
 
 CREATE TABLE `survivor_perks` (
   `id` int(11) NOT NULL,
-  `name` text NOT NULL,
+  `survivorPerkName` text NOT NULL,
   `survivorId` int(11) DEFAULT NULL,
-  `desc` text NOT NULL,
+  `survivorPerkDesc` text NOT NULL,
   `photo` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
