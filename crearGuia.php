@@ -311,6 +311,88 @@ var addonArray= new Array();
     </div>
   </div>  
 
+  <div class="col-9" id="buildSuperviviente">
+              <div class="row">
+                <br><br>
+              </div>
+              <div class="row">
+                <div class="col-3 offset-sm-2" id="objeto">
+                  <div class="row"> 
+                     <h3>Objeto<h3>
+                  </div>
+                  <div class="row">
+                     <img class="objeto" src="images/powerIcon.png" width="150" alt="">
+                  </div>
+                </div>
+                <div class="col-3 text-center" id="objetoAddon1" data-toggle='modal' data-target='#modalObjetoAddon1'>
+                  <div class="row">
+                    <h3 id="seleccionObjetoAddon1">Objeto Addon 1<span>ID</span></h3>
+                  </div>
+                  <div class="row">
+                   <img class="objeto" src="images/powerIcon.png" width="150" alt="IconoAddon" id="iconoObjetoAddon1">
+                  </div>
+                </div>
+                <div class="col-3  text-center" id="objetoAddon2" data-toggle='modal' data-target='#modalObjetoAddon2'>
+                  <div class="row">
+                    <h3 id="seleccionObjetoAddon2">Objeto Addon2 <span>ID</span><h3>
+                  </div>
+                  <div class="row">
+                   <img class="objeto" src="images/powerIcon.png" width="150" alt="IconoAddon" id="iconoObjetoAddon2">
+                  </div>
+                </div>
+              </div>
+              
+              <div class="row">
+              <br><br>
+              </div>
+              <div class="row">
+                <div class="col-2 text-center offset-sm-1" id="perkSupervivient1"  data-toggle='modal' data-target='#modalSupervivientePerk1'> 
+                  <div class="row">
+                      <h3 id="seleccionSupervivientePerk1">Perk 1</h3>
+                  </div>
+                  <div class="row">
+                   <br>
+                  </div>
+                  <div class="row">
+                  <img class="perk" src="images/perkIcon.png" width="150" alt="" id="iconoSupervivientePerk1">
+                  </div>
+                 </div>
+                <div class="col-2 text-center  offset-sm-1" id="supervivientePerk2" data-toggle='modal' data-target='#modalSupervivientePerk2'>
+                  <div class="row">
+                    <h3 id="seleccionSupervivientePerk2">Perk 2</h3>
+                  </div>
+                  <div class="row">
+                   <br>
+                  </div>
+                  <div class="row">
+                  <img class="perk" src="images/perkIcon.png" width="150" alt="" id="iconoSupervivientePerk2">
+                  </div>
+                </div>
+                <div class="col-2 text-center  offset-sm-1" id="supervivientePerk3" data-toggle='modal' data-target='#modalSupervivientePerk3'>
+                <div class="row">
+                    <h3 id="seleccionPerk3">Perk 3</h3>
+                </div>
+                <div class="row">
+                  <br>
+                </div>
+                <div class="row">
+                  <img class="perk" src="images/perkIcon.png" width="150" alt="" id="iconoSupervivientePerk3">
+                </div>
+                </div>
+                <div class="col-2 text-center  offset-sm-1" id="perkSuperviviente4" data-toggle='modal' data-target='#modalSupervivientePerk4'>
+                <div class="row">
+                    <h3 id="seleccionSupervivientePerk4">Perk 4</h3>
+                  </div>
+                  <div class="row">
+                  <br>
+                </div>
+                  <div class="row">
+                  <img class="perk" src="images/perkIcon.png" width="150" alt="" id="iconoSupervivientePerk4">
+                  </div>
+                </div>
+              </div>
+          </div>
+
   
 
   <script src="js/jquery-3.3.1.slim.min.js"></script>

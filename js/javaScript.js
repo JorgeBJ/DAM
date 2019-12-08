@@ -73,6 +73,8 @@ function seleccionarAddon(seleccionado, divIconoAddon, imgIconoAddon, addonID, n
 function seleccionarAsesino(seleccionado, killerID, poderDiv, addon1Div){
   var buildAsesino = document.getElementById("buildAsesino");
   buildAsesino.style.display = "inline";
+  var buildSuperviviente = document.getElementById("buildSuperviviente");
+  buildSuperviviente.style.display = "none";
   var elementosAsesinos = document.querySelectorAll("div.hover-div");
   //alert(killerID);
   for(i=0; i<elementosAsesinos.length; i++){
@@ -239,3 +241,31 @@ function mostrarCreacionSupervivientes(imagenSuperviviente, imagenAsesino){
   imagenAsesino.src="images/iconoAsesino.png";
 }
 
+function seleccionarSuperviviente(seleccionado, survivorID,){
+  var buildSuperviviente = document.getElementById("buildSuperviviente");
+  buildSuperviviente.style.display = "inline";
+  var elementosSupervivientes = document.querySelectorAll("div.hover-div");
+  //alert(killerID);
+  for(i=0; i<elementosSupervivientes.length; i++){
+    elementosSupervivientes[i].classList.remove("seleccionado");
+  }
+  seleccionado.classList.add("seleccionado");
+  //Limpio la lista de addons disponibles en los modeales de elegir addon!
+  document.getElementById("bodySupervivienteAddon1").innerHTML="";
+  document.getElementById("bodySupervivienteAddon2").innerHTML="";
+  //Limpio los addons que habia elegidos al cambiar
+  document.getElementById("seleccionSupervivienteAddon1").innerText="Addon 1";
+  document.getElementById("seleccionSupervivienteAddon2").innerText="Addon 2";
+  //Eliminos las imagenes
+  document.getElementById("iconoObjetoAddon1").src="images/powerIcon.png";
+  document.getElementById("iconoObjetoAddon2").src="images/powerIcon.png";
+
+  //Abro un modal con los perks que hay en la BBDD
+  
+  //El poder no se puede elegir. Muestro el poder en el div coreespondiente
+ 
+  conexion1=new XMLHttpRequest();
+  conexion1.onreadystatechange = procesarDatosAsesino;
+  conexion1.open('GET','getPower.php?id='+killerID, true);
+  conexion1.send();
+}

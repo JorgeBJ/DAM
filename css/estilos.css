@@ -120,6 +120,10 @@ border-top-right-radius: 13px;
   display: none;
 }
 
+#buildSuperviviente{
+  display: none;
+}
+
 .poder{
   border-style: solid;
   border-color: darkred;
