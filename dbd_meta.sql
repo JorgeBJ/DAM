@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 08-11-2019 a las 10:33:13
+-- Tiempo de generación: 08-12-2019 a las 14:45:48
 -- Versión del servidor: 5.5.24-log
 -- Versión de PHP: 5.4.3
 
@@ -467,7 +467,15 @@ CREATE TABLE IF NOT EXISTS `survivors` (
   `survivor_photo` text NOT NULL,
   `survivor_desc` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Volcado de datos para la tabla `survivors`
+--
+
+INSERT INTO `survivors` (`id`, `survivor_name`, `survivor_photo`, `survivor_desc`) VALUES
+(1, 'Dwight Fairfield', 'https://gamepedia.cursecdn.com/deadbydaylight_gamepedia_en/thumb/2/2b/DF_charSelect_portrait.png/150px-DF_charSelect_portrait.png?version=73ec5f185333a81aa5d843b6fec2cbc4', 'Dwight Fairfield is a nervous Leader, able to locate his allies and increase their effectiveness.\r\n\r\nHis personal Perks, Bond, Prove Thyself, and Leader, allow him to get in proximity of other Survivors and provide bonuses to their actions as well as his own.\r\n\r\nHe is skilled at finding others and working as a group. His Perks help him and others by keeping them together and alive.\r\n\r\nDifficulty rating: Easy'),
+(2, 'Meg Thomas', 'https://gamepedia.cursecdn.com/deadbydaylight_gamepedia_en/thumb/a/a6/MT_charSelect_portrait.png/150px-MT_charSelect_portrait.png?version=6694896d1c7dab41a22e77fb463bee44', 'Meg Thomas is an energetic Athlete, able to outrun most Killers.\r\n\r\nHer personal Perks, Quick & Quiet, Sprint Burst, and Adrenaline, give her advantages to escape chases and put distance between herself and the Killer.\r\n\r\nShe is all about escaping and avoiding bad situations. She can greatly surprise the Killer with her speed, when she is in a bad situation.\r\n\r\nDifficulty rating: Easy');
 
 -- --------------------------------------------------------
 
@@ -510,10 +518,23 @@ CREATE TABLE IF NOT EXISTS `survivor_perks` (
   `perk_name` text NOT NULL,
   `survivor_id` int(11) DEFAULT NULL,
   `perk_desc` text NOT NULL,
-  `perk_photo` int(11) NOT NULL,
+  `perk_photo` text NOT NULL,
   PRIMARY KEY (`id`),
   KEY `survivorId` (`survivor_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+
+--
+-- Volcado de datos para la tabla `survivor_perks`
+--
+
+INSERT INTO `survivor_perks` (`id`, `perk_name`, `survivor_id`, `perk_desc`, `perk_photo`) VALUES
+(1, 'Bond', 1, 'Unlocks potential in one''s Aura-reading ability.\r\nAllies'' Auras are revealed to you when they are within a range of 20/28/36 metres.', 'https://gamepedia.cursecdn.com/deadbydaylight_gamepedia_en/thumb/f/fd/Teachable_bond.png/64px-Teachable_bond.png?version=39d679fe56ff1a12a11bffb3c940ba7e'),
+(2, 'Prove Thyself', 1, 'Increases the Repair Speed by 10 % for each other Survivor working on a Generator within a range of 4 metres. Gain 50/75/100 % more Bloodpoints for cooperative Actions.\r\nSurvivors can only be affected by one Prove Thyself effect at a time.', 'https://gamepedia.cursecdn.com/deadbydaylight_gamepedia_en/thumb/f/f2/Teachable_proveThyself.png/64px-Teachable_proveThyself.png?version=6b537b15bc66dda72093dc8ab70ed5ad'),
+(3, 'Leader', 1, 'You''re able to organise a team to cooperate more efficiently.\r\nIncreases the other Survivors'' Healing, Sabotage, Unhooking, Cleansing, Opening Exit Gates, and Chest Search speeds by 15/20/25 % when they are within 8 metres of range from you.\r\n\r\nSurvivors can only be affected by one Leader effect at a time.\r\n\r\nThis effect persists on other Survivors for 15 seconds after leaving the Leader''s effective Perk range.', 'https://gamepedia.cursecdn.com/deadbydaylight_gamepedia_en/thumb/f/f8/Teachable_leader.png/64px-Teachable_leader.png?version=9cd0588d0df6ab3f037b511e592269ff'),
+(4, 'Quick & Quiet', NULL, 'You do not make as much noise as others when quickly vaulting over obstacles or hiding in Lockers.\r\nThe vault and hide actions'' noise detection and audio range is reduced by 100 %.\r\n\r\nThis effect can only be triggered once every 30/25/20 seconds.', 'https://gamepedia.cursecdn.com/deadbydaylight_gamepedia_en/thumb/e/e5/Teachable_quickAndQuiet.png/64px-Teachable_quickAndQuiet.png?version=8300219ec603d97f811f4f2ce7abf81d'),
+(5, 'Sprint Burst', 2, 'When starting to run, break into a sprint at 150 % your normal running speed for a maximum of 3 seconds.\r\nCauses the Exhausted IconStatusEffects exhausted.png Status Effect for 60/50/40 seconds.\r\n\r\nSprint Burst cannot be used while Exhausted.', 'https://gamepedia.cursecdn.com/deadbydaylight_gamepedia_en/thumb/9/99/Teachable_sprintBurst.png/64px-Teachable_sprintBurst.png?version=7da07521d4caf23e94dd63fea6d60574'),
+(6, 'Adrenaline', 2, 'You are fuelled by unexpected energy when on the verge of escape.\r\nInstantly heal one Health State and sprint at 150 % of your normal running speed for 5 seconds when the Exit Gates IconHelp exitGates.png are powered.\r\n\r\nAdrenaline is on hold if you are disabled at the moment it should take effect and will activate when freed.\r\n\r\nAdrenaline will wake you up if you are asleep when it triggers.\r\n\r\nAdrenaline ignores Exhaustion.\r\n\r\nCauses the Exhausted Status Effect for 60/50/40 seconds.', 'https://gamepedia.cursecdn.com/deadbydaylight_gamepedia_en/thumb/c/c0/Teachable_adrenaline.png/64px-Teachable_adrenaline.png?version=52c25e8cd34567a653828e8debb7646f'),
+(7, 'Hope', NULL, 'The growing odds of a successful escape fill you with hope and give you wings.\r\nAs soon as the Exit Gates are powered, you gain a 5/6/7 % Haste Status Effect for 120 seconds.', 'https://gamepedia.cursecdn.com/deadbydaylight_gamepedia_en/thumb/1/18/IconPerks_hope.png/64px-IconPerks_hope.png?version=8761f5094432386b7c27914c9f4e4eff');
 
 --
 -- Restricciones para tablas volcadas
@@ -541,13 +562,13 @@ ALTER TABLE `killers_addons`
 -- Filtros para la tabla `killer_build`
 --
 ALTER TABLE `killer_build`
-  ADD CONSTRAINT `killer_build_ibfk_7` FOREIGN KEY (`addon2_id`) REFERENCES `killers_addons` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `killer_build_ibfk_1` FOREIGN KEY (`killer_id`) REFERENCES `killers` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `killer_build_ibfk_2` FOREIGN KEY (`perk1_id`) REFERENCES `killer_perks` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `killer_build_ibfk_3` FOREIGN KEY (`perk2_id`) REFERENCES `killer_perks` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `killer_build_ibfk_4` FOREIGN KEY (`perk3_id`) REFERENCES `killer_perks` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `killer_build_ibfk_5` FOREIGN KEY (`perk4_id`) REFERENCES `killer_perks` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `killer_build_ibfk_6` FOREIGN KEY (`addon1_id`) REFERENCES `killers_addons` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `killer_build_ibfk_6` FOREIGN KEY (`addon1_id`) REFERENCES `killers_addons` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `killer_build_ibfk_7` FOREIGN KEY (`addon2_id`) REFERENCES `killers_addons` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `killer_perks`
@@ -559,14 +580,14 @@ ALTER TABLE `killer_perks`
 -- Filtros para la tabla `survivor_build`
 --
 ALTER TABLE `survivor_build`
-  ADD CONSTRAINT `survivor_build_ibfk_8` FOREIGN KEY (`addon2_id`) REFERENCES `items_addons` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `survivor_build_ibfk_1` FOREIGN KEY (`survivor_id`) REFERENCES `survivors` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `survivor_build_ibfk_2` FOREIGN KEY (`perk1_id`) REFERENCES `survivor_perks` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `survivor_build_ibfk_3` FOREIGN KEY (`perk2_id`) REFERENCES `survivor_perks` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `survivor_build_ibfk_4` FOREIGN KEY (`perk3_id`) REFERENCES `survivor_perks` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `survivor_build_ibfk_5` FOREIGN KEY (`perk4_id`) REFERENCES `survivor_perks` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `survivor_build_ibfk_6` FOREIGN KEY (`item_id`) REFERENCES `items` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `survivor_build_ibfk_7` FOREIGN KEY (`addon1_id`) REFERENCES `items_addons` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `survivor_build_ibfk_7` FOREIGN KEY (`addon1_id`) REFERENCES `items_addons` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `survivor_build_ibfk_8` FOREIGN KEY (`addon2_id`) REFERENCES `items_addons` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `survivor_perks`
