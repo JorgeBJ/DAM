@@ -120,6 +120,10 @@ border-top-right-radius: 13px;
   display: none;
 }
 
+#buildSuperviviente{
+  display: none;
+}
+
 .poder{
   border-style: solid;
   border-color: darkred;
@@ -135,4 +139,21 @@ border-top-right-radius: 13px;
   -ms-transform: rotate(45deg);
   -o-transform: rotate(45deg);
   transform: rotate(45deg);
+}
+
+.hoverAddon:hover{
+  box-shadow: 2px 2px 2px red inset, -2px -2px 2px red inset;
+}
+
+.oculto {
+  display: none;
+}
+
+.tipoGuia{
+  padding-left: 4%;
+  text-align: right;
+}
+
+ #asesino{
+  display: none;
 }

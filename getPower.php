@@ -11,7 +11,7 @@ require("conexion.php");
         $powerDesc=$datosPoder["powerDesc"];
         $powerLogo=$datosPoder["powerLogo"];
         $data["name"] =  $name;
-        $data["powerDesc"] =$powerDesc; //Si comentas esto no se rompe el json al seleccionar EL Doctor ?¿?
+        $data["powerDesc"] =$powerDesc; 
         $data["powerLogo"] = $powerLogo;
      echo json_encode($data);
     }
