@@ -63,9 +63,11 @@ function seleccionarAddon(seleccionado, divIconoAddon, imgIconoAddon, addonID, n
   document.getElementById(divNombreAddon).innerText=nombre;
   divIconoAddon.src=imgIconoAddon;
     //Añado un campo oculto descendiente del elemento divNombreAddon
-    var elemento = document.createElement('p');
+    var elemento = document.createElement('input');
     elemento.textContent = addonID;
     elemento.setAttribute('class', 'oculto');
+    elemento.setAttribute('name',divNombreAddon+"Name");
+    elemento.setAttribute("value", addonID);
     document.getElementById(divNombreAddon).appendChild(elemento);
 }
 
@@ -81,6 +83,14 @@ function seleccionarAsesino(seleccionado, killerID, poderDiv, addon1Div){
     elementosAsesinos[i].classList.remove("seleccionado");
   }
   seleccionado.classList.add("seleccionado");
+  //Añado un campo oculto con el id del asesino al formulario
+  var elemento = document.createElement('input');
+  elemento.textContent = killerID;
+  elemento.setAttribute('class', 'oculto');
+  elemento.setAttribute('name', "killerId");
+  elemento.setAttribute("value", killerID);
+  document.getElementById("formularioBuildAsesino").appendChild(elemento);
+
   //Limpio la lista de addons disponibles en los modeales de elegir addon!
   document.getElementById("bodyAddon1").innerHTML="";
   document.getElementById("bodyAddon2").innerHTML="";
@@ -244,6 +254,8 @@ function mostrarCreacionSupervivientes(imagenSuperviviente, imagenAsesino){
 function seleccionarSuperviviente(seleccionado, survivorID,){
   var buildSuperviviente = document.getElementById("buildSuperviviente");
   buildSuperviviente.style.display = "inline";
+  var buildAsesino= document.getElementById("buildAsesino");
+  buildSuperviviente.style.display = "none";
   var elementosSupervivientes = document.querySelectorAll("div.hover-div");
   //alert(killerID);
   for(i=0; i<elementosSupervivientes.length; i++){
@@ -265,7 +277,160 @@ function seleccionarSuperviviente(seleccionado, survivorID,){
   //El poder no se puede elegir. Muestro el poder en el div coreespondiente
  
   conexion1=new XMLHttpRequest();
-  conexion1.onreadystatechange = procesarDatosAsesino;
-  conexion1.open('GET','getPower.php?id='+killerID, true);
+  conexion1.onreadystatechange = procesarDatosSuperviventes;
+  conexion1.open('GET','getSurvivorsPerks.php?id='+survivorrID, true);
   conexion1.send();
+}
+
+
+function procesarDatosSupervivente(){
+  var resultados = document.getElementById("power");
+  if(conexion1.readyState == 4)
+  {
+    var datos=conexion1.responseText;
+    var obj = JSON.parse(datos);
+         //Pendiente de refactorizar!
+         var perk1Div = document.getElementById("bodyPerk1");
+         var perk2Div = document.getElementById("bodyPerk2");
+         var perk3Div = document.getElementById("bodyPerk3");
+         var perk4Div = document.getElementById("bodyPerk4");
+         //Para que no se añadan dos veces los perks
+         perk1Div.innerHTML=""; 
+         perk2Div.innerHTML=""; 
+         perk3Div.innerHTML=""; 
+         perk4Div.innerHTML=""; 
+         for(i=0; i <perksArray.length; i++){
+           var logo=perksArray[i].logo;
+           var id=perksArray[i].id;
+           var perkName= perksArray[i].survivorPerkName;
+           perk1Div.innerHTML += 
+           "<div class='col-4 hoverAddon' onclick='seleccionarAddon(this,iconoPerk1,\""+logo+"\",\""+id+"\",\""+perkName+"\",\"seleccionPerk1\")'>"+
+           "<p>"+perksArray[i].survivorPerkName+"<p>"+
+          "<img title='" +perksArray[i].survivorPerkName+"' src='"+perksArray[i].photo+"' width='100' alt=''>"+
+          "</div>";
+          perk2Div.innerHTML += 
+          "<div class='col-4 hoverAddon' onclick='seleccionarAddon(this,iconoPerk2,\""+photo+"\",\""+id+"\",\""+perkName+"\",\"seleccionPerk2\")'>"+
+          "<p>"+perksArray[i].survivorPerkName+"<p>"+
+         "<img title='" +perksArray[i].survivorPerkName+"' src='"+perksArray[i].photo+"' width='100' alt=''>"+
+         "</div>";
+         perk3Div.innerHTML += 
+         "<div class='col-4 hoverAddon' onclick='seleccionarAddon(this,iconoPerk3,\""+photo+"\",\""+id+"\",\""+perkName+"\",\"seleccionPerk3\")'>"+
+         "<p>"+perksArray[i].survivorPerkName+"<p>"+
+        "<img title='" +perksArray[i].survivorPerkName+"' src='"+perksArray[i].photo+"' width='100' alt=''>"+
+        "</div>";
+        perk4Div.innerHTML += 
+        "<div class='col-4 hoverAddon' onclick='seleccionarAddon(this,iconoPerk4,\""+photo+"\",\""+id+"\",\""+perkName+"\",\"seleccionPerk4\")'>"+
+        "<p>"+perksArray[i].survivorPerkName+"<p>"+
+       "<img title='" +perksArray[i].survivorPerkName+"' src='"+perksArray[i].photo+"' width='100' alt=''>"+
+       "</div>";
+   
+         }
+       }
+       else 
+  {
+    resultados.innerHTML = "Cargando...";
+  } 
+  
+}
+
+function comprobarBuildAsesino(){
+  var addon1ID;
+  var addon2ID;
+  var perk1ID;
+  var perk2ID;
+  var perk3ID;
+  var perk4ID;
+  var nombre;
+  var mensajeError="";
+  var mensajeOK="";
+  var todoOK= true;
+  //comprobar nombre build
+  nombre=document.getElementById("nombreBuildAsesino").value;
+  if(nombre==""){
+    todoOK=false;
+    mensajeError+="Es necesario darle un nombre a la build\n";
+  }
+  //comprobacion perks
+  perk1= document.getElementById("seleccionPerk1");
+  perk1ID=perk1.getElementsByClassName("oculto");
+  perk2= document.getElementById("seleccionPerk2");
+  perk2ID=perk2.getElementsByClassName("oculto");
+  perk3= document.getElementById("seleccionPerk3");
+  perk3ID=perk3.getElementsByClassName("oculto");
+  perk4= document.getElementById("seleccionPerk4");
+  perk4ID=perk4.getElementsByClassName("oculto");
+  if(perk1ID[0]!=null){
+    perk1ID=perk1ID[0].innerText;
+    mensajeOK +="perkID1 = " + perk1ID + "\n";
+  }
+  else{
+    mensajeError+= "No se ha seleccionado perk1\n";
+    todoOK=false;
+  }
+  if(perk2ID[0]!=null){
+    perk2ID=perk2ID[0].innerText;
+    mensajeOK +="perkID2 = " + perk2ID + "\n";
+  }
+  else{
+    mensajeError+= "No se ha seleccionado perk2\n";
+    todoOK=false;
+  }
+  if(perk4ID[0]!=null){
+    perk3ID=perk3ID[0].innerText;
+    mensajeOK +="perkID3 = " + perk3ID + "\n";
+  }
+  else{
+    mensajeError+= "No se ha seleccionado perk3\n";
+    todoOK=false;
+  }
+  if(perk4ID[0]!=null){
+    perk4ID=perk4ID[0].innerText;
+    mensajeOK +="perkID4 = " + perk4ID + "\n";
+  }
+  else{
+    mensajeError+= "No se ha seleccionado perk4\n";
+  }
+  if(todoOK){
+     //Comprobar que todos los perks son diferentes
+    if(perk1ID==perk2ID||perk1ID==perk3ID||perk1ID==perk4ID||perk2ID==perk3ID||perk2ID==perk4ID||perk3ID==perk4ID){
+      todoOK=false;
+      mensajeError="Los perks no pueden estar repetidos."
+      console.log(mensajeError);
+    }
+  } 
+  //COMPROBACION ADDONS
+  addon1= document.getElementById("seleccionAddon1");
+  addon1ID=addon1.getElementsByClassName("oculto");
+  addon2= document.getElementById("seleccionAddon2");
+  addon2ID=addon2.getElementsByClassName("oculto");
+  if(addon1ID[0]!=null){
+    addon1ID=addon1ID[0].innerText;
+    mensajeOK +="Addon1ID = " + addon1ID + "\n";
+    console.log(addon1ID);
+  }
+  else{
+    mensajeError+= "No se ha seleccionado addon 1\n";
+    todoOK=false;
+  }
+  if(addon2ID[0]!=null){
+    addon2ID=addon2ID[0].innerText;
+    mensajeOK +="Addon2ID = " + addon2ID + "\n";
+    console.log(addon2ID);
+  }
+  else{
+    mensajeError+= "No se ha seleccionado addon 2\n";
+    todoOK=false;
+  }  
+  if(todoOK){
+     //Comprobar que  los addons son diferentes
+   if(addon1ID==addon2ID){
+      todoOK=false;
+      mensajeError +="Los addons no pueden estar repetidos."
+      console.log(mensajeError);
+    }
+  } 
+console.log("comprobar build Asesino: " + todoOK);
+if(!todoOK)
+  console.log(mensajeError);
+return todoOK;
 }

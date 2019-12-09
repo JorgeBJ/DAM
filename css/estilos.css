@@ -157,3 +157,6 @@ border-top-right-radius: 13px;
  #asesino{
   display: none;
 }
+.botonCrearAsesino{
+  margin-top: 3em;
+}

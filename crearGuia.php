@@ -9,6 +9,8 @@ require("conexion.php");
 var powerDesc="";
 var powerName="";
 var addonArray= new Array();
+var killerID;
+var survivorID;
 </script>
   
 <?php
@@ -55,14 +57,19 @@ var addonArray= new Array();
         
                 mysqli_stmt_close($stmt);
             }
-            
-            
             kill_con($conn);
             ?>
           </div>
             <div class="col-9" id="buildAsesino">
+              <form class="form" id="formularioBuildAsesino" action="create_killer_build.php" onsubmit="return comprobarBuildAsesino()" method="post">
               <div class="row">
                 <br><br>
+                <div class="col-8 offset-sm-2">
+                <div class="form-group">
+                <label for="nombreBuildAsesino" >Nombre de la build</label>
+                  <input type="text" class="form-control" id="nombreBuildAsesino" name="nombreBuildAsesino">
+                </div>  
+              </div>    
               </div>
               <div class="row">
                 <div class="col-3 offset-sm-2" id="power">
@@ -75,7 +82,7 @@ var addonArray= new Array();
                 </div>
                 <div class="col-3 text-center" id="powerAddon1" data-toggle='modal' data-target='#modalAddon1'>
                   <div class="row">
-                    <h3 id="seleccionAddon1">Addon 1<span>ID</span></h3>
+                    <h3 id="seleccionAddon1">Addon 1</h3>
                   </div>
                   <div class="row">
                    <img class="poder" src="images/powerIcon.png" width="150" alt="IconoAddon" id="iconoPowerAddon1">
@@ -83,7 +90,7 @@ var addonArray= new Array();
                 </div>
                 <div class="col-3  text-center" id="powerAddon2" data-toggle='modal' data-target='#modalAddon2'>
                   <div class="row">
-                    <h3 id="seleccionAddon2">Addon2 <span>ID</span><h3>
+                    <h3 id="seleccionAddon2">Addon2<h3>
                   </div>
                   <div class="row">
                    <img class="poder" src="images/powerIcon.png" width="150" alt="IconoAddon" id="iconoPowerAddon2">
@@ -140,6 +147,12 @@ var addonArray= new Array();
                   </div>
                 </div>
               </div>
+              <div class="row botonCrearAsesino">
+              <div class="col-6 offset-sm-3">
+               <button type="submit" class="btn btn-danger btn-lg btn-block botonCrearAsesino" onclick="">Crear Build</button>
+              </div> 
+              </div>  
+            </form>
           </div>
 
         <div class="row">
@@ -309,8 +322,10 @@ var addonArray= new Array();
       </div>
       
     </div>
-  </div>  
 
+
+  </div>  
+ 
   <div class="col-9" id="buildSuperviviente">
               <div class="row">
                 <br><br>

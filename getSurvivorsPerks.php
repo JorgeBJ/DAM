@@ -1,16 +1,14 @@
 <?php
 require("conexion.php");
     $conn = create_con();
-    $id = $_GET['id'];
     
-     $query = "SELECT killerName, logo, id from killers_addons where killerId=".$id;
+     $query = "SELECT survivorPerkName, photo, survivorPerkDesc from survivor_perks";
      $resultado=$conn->query($query);
      if ($resultado->num_rows > 0) {
         while($fila = $resultado->fetch_array())
         {
             $datos[] = $fila;
-        }   
-     kill_con($conn);       
+        }       
      echo json_encode($datos);
      
     }
