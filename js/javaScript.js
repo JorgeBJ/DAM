@@ -239,8 +239,6 @@ function mostrarCreacionAsesinos(imagenAsesino, imagenSuperviviente){
   document.getElementById("superviviente").style.display="none";
   imagenSuperviviente.src="images/iconoSuperviviente.png";
   imagenAsesino.src="images/iconoAsesinoGlow.png";
-
-
 }
 
 function mostrarCreacionSupervivientes(imagenSuperviviente, imagenAsesino){
@@ -433,4 +431,31 @@ console.log("comprobar build Asesino: " + todoOK);
 if(!todoOK)
   console.log(mensajeError);
 return todoOK;
+}
+
+/////////////////////VISUALIZACION GUIAS/////////////////////////
+
+function mostrarGuiasAsesinos(imagenAsesino, imagenSuperviviente){
+  document.getElementById("ocultoAsesino").style.display="inline";
+  document.getElementById("asesino").style.display="inline";
+  document.getElementById("ocultoSuperviviente").style.display="none";
+  document.getElementById("superviviente").style.display="none";
+  imagenSuperviviente.src="images/iconoSuperviviente.png";
+  imagenAsesino.src="images/iconoAsesinoGlow.png";
+}
+
+function mostrarGuiasSupervivientes(imagenSuperviviente, imagenAsesino){
+  document.getElementById("ocultoAsesino").style.display="none";
+  document.getElementById("asesino").style.display="none";
+  document.getElementById("superviviente").style.display="inline";
+  document.getElementById("ocultoSuperviviente").style.display="inline";
+  imagenSuperviviente.src="images/iconoSupervivienteGlow.png";
+  imagenAsesino.src="images/iconoAsesino.png";
+}
+
+
+function recuperarGuiasAsesino(elemento, killerID){
+  console.log("Se recuperan las guias para el asesino con ID: " + killerID);
+  document.getElementById("ocultoAsesino").display="inline";
+
 }

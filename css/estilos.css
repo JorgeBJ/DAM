@@ -160,3 +160,15 @@ border-top-right-radius: 13px;
 .botonCrearAsesino{
   margin-top: 3em;
 }
+
+.table{
+  color:white;
+}
+
+#ocultoAsesino{
+  display: none;
+}
+
+#ocultoSuperviviente{
+  display: none;
+}
