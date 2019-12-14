@@ -28,6 +28,7 @@ var survivorID;
             <h3>Asesino<h3>
             <img id="imagenAsesino" title='Crear Guia Asesino' src='images\iconoAsesino.png' width='200' alt='' onclick='mostrarCreacionAsesinos(this, imagenSuperviviente)'>  
           </div>
+          <div class="w-50 d-xl-none"></div>
           <div class="col-1">
             <h3>Superviviente<h3>
             <img id="imagenSuperviviente" title='Crear Guia Superviviente' src='images\iconoSuperviviente.png' width='200' alt='' onclick='mostrarCreacionSupervivientes(this,imagenAsesino)'>  
@@ -154,8 +155,7 @@ var survivorID;
               </div>  
             </form>
           </div>
-
-        <div class="row">
+          
           <div id="superviviente" class="col-3 text-center">
             <?php
               $conn = create_con();
@@ -171,7 +171,7 @@ var survivorID;
 
                 while (mysqli_stmt_fetch($stmt)) {
                   echo  
-                  "<div class='col-3 text-center hover-div' style='margin-bottom: 2.5rem;'  onclick='seleccionarAsesino(this, $survivorID , power)'>
+                  "<div class='col-3 text-center hover-div' style='margin-bottom: 2.5rem;'  onclick='seleccionarSuperviviente(this, $survivorID)'>
                     <img title='".$survivorName."' src='$photo' width='100' alt=''>
                   </div>";
                 }
@@ -183,6 +183,101 @@ var survivorID;
             
             kill_con($conn);
             ?>
+          </div>
+
+          <div class="col-8" id="buildSuperviviente">
+          <form class="form" id="formularioBuildSuperviviente" action="create_survivor_build.php" onsubmit="return comprobarBuildSuperviviente()" method="post">
+          <div class="row">
+                <br><br>
+                <div class="col-8 offset-sm-2">
+                <div class="form-group">
+                <label for="nombreBuildSuperviviente" >Nombre de la build</label>
+                  <input type="text" class="form-control" id="nombreBuildSuperviviente" name="nombreBuildSuperviviente">
+                </div>  
+              </div>    
+              </div>
+              <div class="row">
+                <div class="col-3 offset-sm-2" id="objeto" data-toggle='modal' data-target='#modalObjeto'>
+                  <div class="row"> 
+                     <h3 id="seleccionObjeto">Objeto<h3>
+                  </div>
+                  <div class="row">
+                     <img class="objeto" src="images/powerIcon.png" width="150" alt="" id="iconoObjeto">
+                  </div>
+                </div>
+                <div class="col-3 text-center" id="objetoAddon1" data-toggle='modal' data-target='#modalObjetoAddon1'>
+                  <div class="row">
+                    <h3 id="seleccionObjetoAddon1">Objeto Addon 1<span>ID</span></h3>
+                  </div>
+                  <div class="row">
+                   <img class="objeto" src="images/powerIcon.png" width="150" alt="IconoAddon" id="iconoObjetoAddon1">
+                  </div>
+                </div>
+                <div class="col-3  text-center" id="objetoAddon2" data-toggle='modal' data-target='#modalObjetoAddon2'>
+                  <div class="row">
+                    <h3 id="seleccionObjetoAddon2">Objeto Addon2 <span>ID</span><h3>
+                  </div>
+                  <div class="row">
+                   <img class="objeto" src="images/powerIcon.png" width="150" alt="IconoAddon" id="iconoObjetoAddon2">
+                  </div>
+                </div>
+              </div>
+              
+              <div class="row">
+              <br><br>
+              </div>
+              <div class="row">
+                <div class="col-2 text-center offset-sm-1" id="supervivientePerk1"  data-toggle='modal' data-target='#modalSurvivorPerk1'> 
+                  <div class="row">
+                      <h3 id="seleccionSupervivientePerk1">Perk 1</h3>
+                  </div>
+                  <div class="row">
+                   <br>
+                  </div>
+                  <div class="row">
+                  <img class="perk" src="images/perkIcon.png" width="150" alt="" id="iconoSupervivientePerk1">
+                  </div>
+                 </div>
+                <div class="col-2 text-center  offset-sm-1" id="supervivientePerk2" data-toggle='modal' data-target='#modalSurvivorPerk2'>
+                  <div class="row">
+                    <h3 id="seleccionSupervivientePerk2">Perk 2</h3>
+                  </div>
+                  <div class="row">
+                   <br>
+                  </div>
+                  <div class="row">
+                  <img class="perk" src="images/perkIcon.png" width="150" alt="" id="iconoSupervivientePerk2">
+                  </div>
+                </div>
+                <div class="col-2 text-center  offset-sm-1" id="supervivientePerk3" data-toggle='modal' data-target='#modalSurvivorPerk3'>
+                <div class="row">
+                    <h3 id="seleccionSupervivientePerk3">Perk 3</h3>
+                </div>
+                <div class="row">
+                  <br>
+                </div>
+                <div class="row">
+                  <img class="perk" src="images/perkIcon.png" width="150" alt="" id="iconoSupervivientePerk3">
+                </div>
+                </div>
+                <div class="col-2 text-center  offset-sm-1" id="perkSuperviviente4" data-toggle='modal' data-target='#modalSurvivorPerk4'>
+                <div class="row">
+                    <h3 id="seleccionSupervivientePerk4">Perk 4</h3>
+                  </div>
+                  <div class="row">
+                  <br>
+                </div>
+                  <div class="row">
+                  <img class="perk" src="images/perkIcon.png" width="150" alt="" id="iconoSupervivientePerk4">
+                  </div>
+                </div>
+              </div>
+              <div class="row botonCrearAsesino">
+              <div class="col-6 offset-sm-3">
+               <button type="submit" class="btn btn-danger btn-lg btn-block botonCrearAsesino" onclick="">Crear Build</button>
+              </div> 
+              </div>  
+            </form>
           </div>
         </div>
         
@@ -326,87 +421,143 @@ var survivorID;
 
   </div>  
  
-  <div class="col-9" id="buildSuperviviente">
-              <div class="row">
-                <br><br>
-              </div>
-              <div class="row">
-                <div class="col-3 offset-sm-2" id="objeto">
-                  <div class="row"> 
-                     <h3>Objeto<h3>
-                  </div>
-                  <div class="row">
-                     <img class="objeto" src="images/powerIcon.png" width="150" alt="">
-                  </div>
-                </div>
-                <div class="col-3 text-center" id="objetoAddon1" data-toggle='modal' data-target='#modalObjetoAddon1'>
-                  <div class="row">
-                    <h3 id="seleccionObjetoAddon1">Objeto Addon 1<span>ID</span></h3>
-                  </div>
-                  <div class="row">
-                   <img class="objeto" src="images/powerIcon.png" width="150" alt="IconoAddon" id="iconoObjetoAddon1">
-                  </div>
-                </div>
-                <div class="col-3  text-center" id="objetoAddon2" data-toggle='modal' data-target='#modalObjetoAddon2'>
-                  <div class="row">
-                    <h3 id="seleccionObjetoAddon2">Objeto Addon2 <span>ID</span><h3>
-                  </div>
-                  <div class="row">
-                   <img class="objeto" src="images/powerIcon.png" width="150" alt="IconoAddon" id="iconoObjetoAddon2">
-                  </div>
-                </div>
-              </div>
-              
-              <div class="row">
-              <br><br>
-              </div>
-              <div class="row">
-                <div class="col-2 text-center offset-sm-1" id="perkSupervivient1"  data-toggle='modal' data-target='#modalSupervivientePerk1'> 
-                  <div class="row">
-                      <h3 id="seleccionSupervivientePerk1">Perk 1</h3>
-                  </div>
-                  <div class="row">
-                   <br>
-                  </div>
-                  <div class="row">
-                  <img class="perk" src="images/perkIcon.png" width="150" alt="" id="iconoSupervivientePerk1">
-                  </div>
-                 </div>
-                <div class="col-2 text-center  offset-sm-1" id="supervivientePerk2" data-toggle='modal' data-target='#modalSupervivientePerk2'>
-                  <div class="row">
-                    <h3 id="seleccionSupervivientePerk2">Perk 2</h3>
-                  </div>
-                  <div class="row">
-                   <br>
-                  </div>
-                  <div class="row">
-                  <img class="perk" src="images/perkIcon.png" width="150" alt="" id="iconoSupervivientePerk2">
-                  </div>
-                </div>
-                <div class="col-2 text-center  offset-sm-1" id="supervivientePerk3" data-toggle='modal' data-target='#modalSupervivientePerk3'>
-                <div class="row">
-                    <h3 id="seleccionPerk3">Perk 3</h3>
-                </div>
-                <div class="row">
-                  <br>
-                </div>
-                <div class="row">
-                  <img class="perk" src="images/perkIcon.png" width="150" alt="" id="iconoSupervivientePerk3">
-                </div>
-                </div>
-                <div class="col-2 text-center  offset-sm-1" id="perkSuperviviente4" data-toggle='modal' data-target='#modalSupervivientePerk4'>
-                <div class="row">
-                    <h3 id="seleccionSupervivientePerk4">Perk 4</h3>
-                  </div>
-                  <div class="row">
-                  <br>
-                </div>
-                  <div class="row">
-                  <img class="perk" src="images/perkIcon.png" width="150" alt="" id="iconoSupervivientePerk4">
-                  </div>
-                </div>
-              </div>
+ 
+
+   <!-- Modales supervivientes-->
+   <!-- Modal perk1-->
+   <div class="modal fade" id="modalSurvivorPerk1" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Seleccionar Perk 1</h3>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div class="row" id="bodySurvivorPerk1">
+           </div>
+        </div> 
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>  
+   <!-- Modal perk2-->
+   <div class="modal fade" id="modalSurvivorPerk2" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Seleccionar Perk 2</h3>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div class="row" id="bodySurvivorPerk2">
+           </div>
+        </div> 
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>  
+     <!-- Modal perk3-->
+     <div class="modal fade" id="modalSurvivorPerk3" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Seleccionar Perk 3</h3>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div class="row" id="bodySurvivorPerk3">
+           </div>
+        </div> 
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>  
+     <!-- Modal perk4-->
+     <div class="modal fade" id="modalSurvivorPerk4" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Seleccionar Addon</h3>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div class="row" id="bodySurvivorPerk4">
+           </div>
+        </div> 
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+      </div>
           </div>
+           <!-- Modal objeto-->
+     <div class="modal fade" id="modalObjeto" role="dialog">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h3>Seleccionar Obejto</h3>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="row" id="bodySurvivorObjeto">
+                </div>
+            </div> 
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+            </div>
+          </div>
+          </div>
+          </div>
+    
+       <!-- Modal objetoAddon-->
+     <div class="modal fade" id="modalObjetoAddon1" role="dialog">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h3>Seleccionar addon 1</h3>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="row" id="bodySurvivorObjetoAddon1">
+                </div>
+            </div> 
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+            </div>
+          </div>
+          </div>
+          </div>
+          
+                     <!-- Modal objetoAddon2-->
+     <div class="modal fade" id="modalObjetoAddon2" role="dialog">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h3>Seleccionar addon 2</h3>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="row" id="bodySurvivorObjetoAddon2">
+                </div>
+            </div> 
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+            </div>
+          </div>
+          </div>
+          </div>
+          
+          
+
 
   
 

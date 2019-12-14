@@ -66,14 +66,20 @@ var survivorID;
             <table class="table">
                 <thead>
                     <tr>
-                    <th scope="col" colspan="3" class="text-center">Addons</th>
+                    <th scope="col" colspan="2" class="text-center">Addons</th>
                     <th scope="col" colspan="4" class="text-center" >Perks</th>
-                    
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="bodyAsesino">
                     <tr>
-                    <th scope="row">1</th>
+                    <td>Addon 1</td>
+                    <td>Addon 2</td>
+                    <td>Perk 1</td>
+                    <td>Perk 2</td>
+                    <td>Perk 3</td>
+                    <td>Perk 4</td>
+                    </tr>
+                    <tr>                
                     <td>Addon 1</td>
                     <td>Addon 2</td>
                     <td>Perk 1</td>
@@ -82,16 +88,6 @@ var survivorID;
                     <td>Perk 4</td>
                     </tr>
                     <tr>
-                    <th scope="row">2</th>
-                    <td>Addon 1</td>
-                    <td>Addon 2</td>
-                    <td>Perk 1</td>
-                    <td>Perk 2</td>
-                    <td>Perk 3</td>
-                    <td>Perk 4</td>
-                    </tr>
-                    <tr>
-                    <th scope="row">3</th>
                     <td>Addon 1</td>
                     <td>Addon 2</td>
                     <td>Perk 1</td>
@@ -136,14 +132,13 @@ var survivorID;
             <table class="table">
                 <thead>
                     <tr>
-                    <th scope="col" colspan="5" class="text-center">Perks</th>
+                    <th scope="col" colspan="4" class="text-center">Perks</th>
                     <th scope="col" colspan="4" class="text-center" >Objetos</th>
                     
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                    <th scope="row">1</th>
                     <td>Perk 1</td>
                     <td>Perk 2</td>
                     <td>Perk 3</td>
@@ -151,12 +146,9 @@ var survivorID;
                     <td>Objeto 1</td>
                     <td>Objeto 2</td>
                     <td>Objeto 3</td>
-                    <td>Objeto 4</td>
-
-                  
+                    <td>Objeto 4</td>          
                     </tr>
                     <tr>
-                    <th scope="row">2</th>
                     <td>Perk 1</td>
                     <td>Perk 2</td>
                     <td>Perk 3</td>
@@ -167,7 +159,6 @@ var survivorID;
                     <td>Objeto 4</td>
                     </tr>
                     <tr>
-                    <th scope="row">3</th>
                     <td>Perk 1</td>
                     <td>Perk 2</td>
                     <td>Perk 3</td>

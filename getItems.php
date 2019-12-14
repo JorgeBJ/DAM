@@ -2,7 +2,7 @@
 require("conexion.php");
     $conn = create_con();
     
-     $query = "SELECT id , perk_name, photo, survivorPerkDesc from survivor_perks";
+     $query = "SELECT id , itemName, logo, itemType from items";
      $resultado=$conn->query($query);
      if ($resultado->num_rows > 0) {
         while($fila = $resultado->fetch_array())

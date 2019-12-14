@@ -107,15 +107,6 @@
                         }
                     ?>
                   </li>
-                  <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <img src="images/iconoIdioma.png" width="35" alt="">&nbsp;&nbsp;&nbsp;Idioma
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                      <a class="dropdown-item" href="#">Castellano</a>
-                      <a class="dropdown-item" href="#">English</a>
-                    </div>
-                </li>
                 </ul>
                 </div>
             </div>
