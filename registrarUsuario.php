@@ -1,6 +1,3 @@
-<?php
-  session_start();
-?>
 <!DOCTYPE>
 <html lang="es">
 <?php
@@ -9,20 +6,20 @@
 
     $conn = create_con();
 
-    $nombre=$_POST["usuarioRegistro"];
+    $name=$_POST["usuarioRegistro"];
     $email=$_POST["emailRegistro"];
     $passwordRegistro=$_POST["passwordRegistro"];
    // $password=$_POST["passwordRegistro"]; 
     $password = password_hash($passwordRegistro, PASSWORD_DEFAULT);
 
-$query= "INSERT INTO usuarios(nombre, email, password) VALUES('".$nombre."', '".$email."','".$password."')";
+$query= "INSERT INTO usuarios(name, email, password) VALUES('".$name."', '".$email."','".$password."')";
 
 $resultado=$conn->query($query);
 
 if ($resultado === TRUE) {
-    $mensaje="<h1>Registrado con éxito</h1>";
+    $msg="<h1>Registrado con éxito</h1>";
 } else {
-    $mensaje="<h1>No se ha podido realizar el registro </h1><p>" . $conn->error."</p>";
+    $msg="<h1>No se ha podido realizar el registro </h1><p>" . $conn->error."</p>";
 }
 kill_con($conn);
 ?>
@@ -34,7 +31,7 @@ kill_con($conn);
   <div class='row'>
         	<div class='col-xs-12 text-center'>
             <?php
-                echo $mensaje;
+                echo $msg;
             ?>
        	    </div>
    </div>

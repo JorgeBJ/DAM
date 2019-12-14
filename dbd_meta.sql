@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 08-12-2019 a las 14:45:48
+-- Tiempo de generación: 14-12-2019 a las 17:31:57
 -- Versión del servidor: 5.5.24-log
--- Versión de PHP: 5.4.3
+-- Versión de PHP: 7.4.0
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -46,9 +46,9 @@ CREATE TABLE IF NOT EXISTS `items` (
 --
 
 INSERT INTO `items` (`id`, `item_name`, `item_logo`, `item_rarity`, `item_desc`, `item_lore`, `item_type`) VALUES
-(1, 'Chinese Firecracker', 'https://gamepedia.cursecdn.com/deadbydaylight_gamepedia_en/thumb/7/73/IconEventItem_chineseFirecracker.png/64px-IconEventItem_chineseFirecracker.png?version=fd6c4361819b8be749cb7d8d94cd8ad4', 'Event', 'A row of small explosive devices wrapped in heavy paper casing. Detonates into loud bangs and intense light flashes.\n\n-Can be used as a distraction, as a blinding device or to celebrate.', NULL, 1),
-(2, 'Winter Party Starter', 'https://gamepedia.cursecdn.com/deadbydaylight_gamepedia_en/thumb/8/84/IconEventItem_winterPartyStarter.png/64px-IconEventItem_winterPartyStarter.png?version=23d2a2375941110a3e94a02fa2cd5413', 'Event', 'A small, highly-explosive dinner table decoration. Detonates into loud bangs and intense light flashes.\n\n-Can be used as a distraction, as a blinding device or to celebrate.', NULL, 1),
-(3, 'Third Year Party Starter', 'https://gamepedia.cursecdn.com/deadbydaylight_gamepedia_en/thumb/6/63/IconEventItem_partyPopper.png/64px-IconEventItem_partyPopper.png?version=54b86dd58e0cd37324d0ff86954913fb', 'Event', 'A small, highly-explosive dinner table decoration. Detonates into loud bangs and intense light flashes, and playful confetti.\n\n-Can be used as a distraction, as a blinding device or to celebrate our three years together.', '"Happy Anniversary! Here''s to our three years together!" — The Dead by Daylight Team', 1),
+(1, 'Chinese Firecracker', 'https://gamepedia.cursecdn.com/deadbydaylight_gamepedia_en/thumb/1/15/FulliconItems_chineseFirecracker.png/64px-FulliconItems_chineseFirecracker.png?version=885b0d3a9b2082009b3b5ab1c659376b', 'Event', 'A row of small explosive devices wrapped in heavy paper casing. Detonates into loud bangs and intense light flashes.\n\n-Can be used as a distraction, as a blinding device or to celebrate.', NULL, 1),
+(2, 'Winter Party Starter', 'https://gamepedia.cursecdn.com/deadbydaylight_gamepedia_en/thumb/d/d5/FulliconItems_winterPartyStarter.png/64px-FulliconItems_winterPartyStarter.png?version=fa05d9456006c6782ff4dd617c479941', 'Event', 'A small, highly-explosive dinner table decoration. Detonates into loud bangs and intense light flashes.\n\n-Can be used as a distraction, as a blinding device or to celebrate.', NULL, 1),
+(3, 'Third Year Party Starter', 'https://gamepedia.cursecdn.com/deadbydaylight_gamepedia_en/thumb/1/10/FulliconItems_partyPopper.png/64px-FulliconItems_partyPopper.png?version=818251731a03f844b468d090bb33beeb', 'Event', 'A small, highly-explosive dinner table decoration. Detonates into loud bangs and intense light flashes, and playful confetti.\n\n-Can be used as a distraction, as a blinding device or to celebrate our three years together.', '"Happy Anniversary! Here''s to our three years together!" — The Dead by Daylight Team', 1),
 (4, 'Flashlight', 'https://gamepedia.cursecdn.com/deadbydaylight_gamepedia_en/thumb/7/76/FulliconItems_flashlightItem.png/64px-FulliconItems_flashlightItem.png?version=72dc0850b3bb4c6f8d575581fc2a3599', 'Uncommon', 'A standard Flashlight.\nCan be used to light your way in the darkness.', '"Most of the battery life was wastefully used by the previous owner."', 2),
 (5, 'Sport Flashlight', 'https://gamepedia.cursecdn.com/deadbydaylight_gamepedia_en/thumb/0/03/FulliconItems_sportFlashlight.png/64px-FulliconItems_sportFlashlight.png?version=c02829fb16502fef9e2cf8a65c814617', 'Rare', 'A very portable Flashlight with a good grip. Its efficient technology produces a powerful light while consuming less power.\n\n-Slightly decreases the Flashlight''s battery consumption.\n\n-Slightly increases the Flashlight''s accuracy.', NULL, 2),
 (6, 'Utility Flashlight', 'https://gamepedia.cursecdn.com/deadbydaylight_gamepedia_en/thumb/2/2f/FulliconItems_utilityFlashlight.png/64px-FulliconItems_utilityFlashlight.png?version=c61502ded4674cbd08147d6f7b1f5e9f', 'Very Rare', 'A sturdy but heavy Flashlight that packs a lot of power.\r\nSlightly reduces accuracy.\r\n\r\n-Moderately increases the Flashlight Beam''s visual brightness.\r\n\r\n-Moderately increases the Flashlight''s blindness duration.', NULL, 2),
@@ -419,6 +419,7 @@ CREATE TABLE IF NOT EXISTS `killer_build` (
   `addon2_id` int(11) DEFAULT NULL,
   `is_f2p` tinyint(1) NOT NULL,
   `is_noob` tinyint(1) NOT NULL,
+  `created_by` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `killerId` (`killer_id`,`perk1_id`,`perk2_id`,`perk3_id`,`perk4_id`,`addon1_id`,`addon2_id`),
   KEY `killer_id` (`killer_id`),
@@ -436,7 +437,8 @@ CREATE TABLE IF NOT EXISTS `killer_build` (
   KEY `killer_id_7` (`killer_id`,`perk1_id`,`perk2_id`,`perk3_id`,`perk4_id`,`addon1_id`,`addon2_id`),
   KEY `killer_id_8` (`killer_id`,`perk1_id`,`perk2_id`,`perk3_id`,`perk4_id`,`addon1_id`,`addon2_id`),
   KEY `killer_id_9` (`killer_id`,`perk1_id`,`perk2_id`,`perk3_id`,`perk4_id`,`addon1_id`,`addon2_id`),
-  KEY `killer_id_10` (`killer_id`,`perk1_id`,`perk2_id`,`perk3_id`,`perk4_id`,`addon1_id`,`addon2_id`)
+  KEY `killer_id_10` (`killer_id`,`perk1_id`,`perk2_id`,`perk3_id`,`perk4_id`,`addon1_id`,`addon2_id`),
+  KEY `created_by` (`created_by`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -496,6 +498,7 @@ CREATE TABLE IF NOT EXISTS `survivor_build` (
   `addon2_id` int(11) DEFAULT NULL,
   `is_f2p` tinyint(1) NOT NULL,
   `is_noob` tinyint(1) NOT NULL,
+  `created_by` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `survivor_id` (`survivor_id`,`perk1_id`,`perk2_id`,`perk3_id`,`perk4_id`,`item_id`,`addon1_id`,`addon2_id`),
   KEY `perk1_id` (`perk1_id`,`perk2_id`,`perk3_id`,`perk4_id`,`item_id`,`addon1_id`,`addon2_id`),
@@ -504,7 +507,8 @@ CREATE TABLE IF NOT EXISTS `survivor_build` (
   KEY `perk4_id` (`perk4_id`),
   KEY `addon1_id` (`addon1_id`),
   KEY `item_id` (`item_id`),
-  KEY `addon2_id` (`addon2_id`)
+  KEY `addon2_id` (`addon2_id`),
+  KEY `created_by` (`created_by`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -535,6 +539,21 @@ INSERT INTO `survivor_perks` (`id`, `perk_name`, `survivor_id`, `perk_desc`, `pe
 (5, 'Sprint Burst', 2, 'When starting to run, break into a sprint at 150 % your normal running speed for a maximum of 3 seconds.\r\nCauses the Exhausted IconStatusEffects exhausted.png Status Effect for 60/50/40 seconds.\r\n\r\nSprint Burst cannot be used while Exhausted.', 'https://gamepedia.cursecdn.com/deadbydaylight_gamepedia_en/thumb/9/99/Teachable_sprintBurst.png/64px-Teachable_sprintBurst.png?version=7da07521d4caf23e94dd63fea6d60574'),
 (6, 'Adrenaline', 2, 'You are fuelled by unexpected energy when on the verge of escape.\r\nInstantly heal one Health State and sprint at 150 % of your normal running speed for 5 seconds when the Exit Gates IconHelp exitGates.png are powered.\r\n\r\nAdrenaline is on hold if you are disabled at the moment it should take effect and will activate when freed.\r\n\r\nAdrenaline will wake you up if you are asleep when it triggers.\r\n\r\nAdrenaline ignores Exhaustion.\r\n\r\nCauses the Exhausted Status Effect for 60/50/40 seconds.', 'https://gamepedia.cursecdn.com/deadbydaylight_gamepedia_en/thumb/c/c0/Teachable_adrenaline.png/64px-Teachable_adrenaline.png?version=52c25e8cd34567a653828e8debb7646f'),
 (7, 'Hope', NULL, 'The growing odds of a successful escape fill you with hope and give you wings.\r\nAs soon as the Exit Gates are powered, you gain a 5/6/7 % Haste Status Effect for 120 seconds.', 'https://gamepedia.cursecdn.com/deadbydaylight_gamepedia_en/thumb/1/18/IconPerks_hope.png/64px-IconPerks_hope.png?version=8761f5094432386b7c27914c9f4e4eff');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `users`
+--
+
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user` text NOT NULL,
+  `mail` text NOT NULL,
+  `password` text NOT NULL,
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 --
 -- Restricciones para tablas volcadas
@@ -587,7 +606,8 @@ ALTER TABLE `survivor_build`
   ADD CONSTRAINT `survivor_build_ibfk_5` FOREIGN KEY (`perk4_id`) REFERENCES `survivor_perks` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `survivor_build_ibfk_6` FOREIGN KEY (`item_id`) REFERENCES `items` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `survivor_build_ibfk_7` FOREIGN KEY (`addon1_id`) REFERENCES `items_addons` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `survivor_build_ibfk_8` FOREIGN KEY (`addon2_id`) REFERENCES `items_addons` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `survivor_build_ibfk_8` FOREIGN KEY (`addon2_id`) REFERENCES `items_addons` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `survivor_build_ibfk_9` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `survivor_perks`
