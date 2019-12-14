@@ -11,9 +11,14 @@ require("conexion.php");
         $item = $_POST['item']
         $addon1 = $_POST['addon1'];
         $addon2 = $_POST['addon2'];
+        if(isset($_SESSION["user"]){
+            $createdBy= $_SESSION["id"];
+        }else{
+            $createdBy= NULL;
+        }
         $fp = checkFp($survivorId, $name, $perk1, $perk2, $perk3, $perk4, $conn);
         $noob = checkNoobie($survivorId, $name, $perk1, $perk2, $perk3, $perk4, $conn);
-        $query = 'INSERT INTO `survivor_build`(`name`, `survivorId`, `perk1Id`, `perk2Id`, `perk3Id`, `perk4Id`, `itemId`, `addon1Id`, `addon2Id`, `isF2P`, `isNoob`) VALUES ('.$name.','.$perk1.','.$perk2.','.$perk3.','.$perk4.','.$item.','.$addon1.','.$addon2.','.$fp.','.$noob.')';
+        $query = 'INSERT INTO `survivor_build`(`name`, `survivorId`, `perk1Id`, `perk2Id`, `perk3Id`, `perk4Id`, `itemId`, `addon1Id`, `addon2Id`, `isF2P`, `isNoob`, `created_by`) VALUES ('.$name.','.$perk1.','.$perk2.','.$perk3.','.$perk4.','.$item.','.$addon1.','.$addon2.','.$fp.','.$noob.','.$createdBy.')';
     }else{
         die;
     }

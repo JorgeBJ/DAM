@@ -13,24 +13,25 @@ $conn = create_con();
 $email=$_POST["emailAcceso"];
 $password=$_POST["passwordAcceso"];
 
-$query = "select email, nombre, password from usuarios where email='".$email."'";
+$query = "select email, name, password from users where email='".$email."'";
 
 $resultado=$conn->query($query);
 
-$mensaje="<h3>Error. Usuario o contraseña incorrectos</h3><p>". $conn->error."</p>";
+$msg="<h3>Error. Usuario o contraseña incorrectos</h3><p>". $conn->error."</p>";
 
 if ($resultado->num_rows > 0) {
-    $datosUsuario= $resultado->fetch_assoc();
-    $hash=$datosUsuario["password"];
+    $userData= $resultado->fetch_assoc();
+    $hash=$userData["password"];
     if(password_verify($password, $hash)){
        // Password correcto!
-       $_SESSION["usuario"]=$datosUsuario["email"];
-       $_SESSION["nombre"]=$datosUsuario["nombre"];
-       //Solo si es correcto cambio el mensaje por defecto.
-       $mensaje="<h3>Usuario Correcto.</h3>";
+       $_SESSION["user"]=$userData["email"];
+       $_SESSION["name"]=$userData["name"];
+       $_SESSION["id"]=$userData["id"]
+       //Solo si es correcto cambio el msg por defecto.
+       $msg="<h3>Usuario Correcto.</h3>";
     }  
     else {
-      $mensaje="La contraseña no es correcta";
+      $msg="La contraseña no es correcta";
   }
 } 
 
@@ -43,7 +44,7 @@ kill_con($conn);
       <div class="row">
         <div class="col-xs-10 col-xs-offset-1 text-center">
       	<?php
-	echo $mensaje;
+	echo $msg;
 ?>
         </div>
       </div>
