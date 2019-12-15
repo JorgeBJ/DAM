@@ -26,7 +26,7 @@ if ($resultado->num_rows > 0) {
        // Password correcto!
        $_SESSION["user"]=$userData["email"];
        $_SESSION["name"]=$userData["name"];
-       $_SESSION["id"]=$userData["id"]
+       $_SESSION["id"]=$userData["id"];
        //Solo si es correcto cambio el msg por defecto.
        $msg="<h3>Usuario Correcto.</h3>";
     }  
