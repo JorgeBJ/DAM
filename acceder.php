@@ -13,6 +13,7 @@ $conn = create_con();
 $email=$_POST["emailAcceso"];
 $password=$_POST["passwordAcceso"];
 
+
 $query = "select id, email, nombre, password from usuarios where email='".$email."'";
 
 $resultado=$conn->query($query);
@@ -26,6 +27,7 @@ if ($resultado->num_rows > 0) {
        // Password correcto!
        $_SESSION["usuario"]=$userData["email"];
        $_SESSION["nombre"]=$userData["nombre"];
+
        $_SESSION["id"]=$userData["id"];
        //Solo si es correcto cambio el msg por defecto.
        $msg="<h3>Usuario Correcto.</h3>";
