@@ -462,81 +462,12 @@ function comprobarBuildAsesino(){
   perk3ID=perk3.getElementsByClassName("oculto");
   perk4= document.getElementById("seleccionPerk4");
   perk4ID=perk4.getElementsByClassName("oculto");
-  if(perk1ID[0]!=null){
-    perk1ID=perk1ID[0].innerText;
-    mensajeOK +="perkID1 = " + perk1ID + "\n";
-  }
-  else{
-    mensajeError+= "No se ha seleccionado perk1\n";
-    todoOK=false;
-  }
-  if(perk2ID[0]!=null){
-    perk2ID=perk2ID[0].innerText;
-    mensajeOK +="perkID2 = " + perk2ID + "\n";
-  }
-  else{
-    mensajeError+= "No se ha seleccionado perk2\n";
-    todoOK=false;
-  }
-  if(perk4ID[0]!=null){
-    perk3ID=perk3ID[0].innerText;
-    mensajeOK +="perkID3 = " + perk3ID + "\n";
-  }
-  else{
-    mensajeError+= "No se ha seleccionado perk3\n";
-    todoOK=false;
-  }
-  if(perk4ID[0]!=null){
-    perk4ID=perk4ID[0].innerText;
-    mensajeOK +="perkID4 = " + perk4ID + "\n";
-  }
-  else{
-    mensajeError+= "No se ha seleccionado perk4\n";
-  }
-  if(todoOK){
-     //Comprobar que todos los perks son diferentes
     if(perk1ID==perk2ID||perk1ID==perk3ID||perk1ID==perk4ID||perk2ID==perk3ID||perk2ID==perk4ID||perk3ID==perk4ID){
       todoOK=false;
       mensajeError="Los perks no pueden estar repetidos."
       console.log(mensajeError);
     }
-  } 
-  //COMPROBACION ADDONS
-  addon1= document.getElementById("seleccionAddon1");
-  addon1ID=addon1.getElementsByClassName("oculto");
-  addon2= document.getElementById("seleccionAddon2");
-  addon2ID=addon2.getElementsByClassName("oculto");
-  if(addon1ID[0]!=null){
-    addon1ID=addon1ID[0].innerText;
-    mensajeOK +="Addon1ID = " + addon1ID + "\n";
-    console.log(addon1ID);
   }
-  else{
-    mensajeError+= "No se ha seleccionado addon 1\n";
-    todoOK=false;
-  }
-  if(addon2ID[0]!=null){
-    addon2ID=addon2ID[0].innerText;
-    mensajeOK +="Addon2ID = " + addon2ID + "\n";
-    console.log(addon2ID);
-  }
-  else{
-    mensajeError+= "No se ha seleccionado addon 2\n";
-    todoOK=false;
-  }  
-  if(todoOK){
-     //Comprobar que  los addons son diferentes
-   if(addon1ID==addon2ID){
-      todoOK=false;
-      mensajeError +="Los addons no pueden estar repetidos."
-      console.log(mensajeError);
-    }
-  } 
-console.log("comprobar build Asesino: " + todoOK);
-if(!todoOK)
-  console.log(mensajeError);
-return todoOK;
-}
 
 /////////////////////VISUALIZACION GUIAS/////////////////////////
 
