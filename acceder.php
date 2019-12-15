@@ -50,10 +50,10 @@ kill_con($conn);
       </div>
     </div>
 
-<!--<script>
+<script>
 //Script para redirigir a index.php tras x segundos
 setTimeout(() => {
   window.location.href="index.php"; 
   exit();
 }, 2000);
-</script>-->
+</script>
