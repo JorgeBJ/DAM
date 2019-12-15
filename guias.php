@@ -1,6 +1,6 @@
 <?php
 session_start();
-include "comprobarSesion.php";
+
 require("conexion.php");
 ?>
 <!DOCTYPE html>
@@ -40,14 +40,14 @@ var survivorID;
             <?php
               $conn = create_con();
               
-              $query = "select killerName, photo , id from killers order by id";
+              $query = "select killer_name, photo , id from killers order by id";
 
               if ($stmt = mysqli_prepare($conn, $query)) {
 
                 echo "<div class='row'>";
 
                 mysqli_stmt_execute($stmt);
-                mysqli_stmt_bind_result($stmt, $killerName, $photo , $killerID);
+                mysqli_stmt_bind_result($stmt, $killer_name, $photo , $killerID);
 
                 while (mysqli_stmt_fetch($stmt)) {
                   echo  
