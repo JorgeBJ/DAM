@@ -86,12 +86,6 @@
                   <li class="nav-item">
                     <a class="nav-link" href="guias.php"><img src="images/iconoGuiasCirculo.png" width="40" alt="">&nbsp;&nbsp;Guías</a>
                   </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#"> <img src="images/iconoKillerpng" width="40" alt="">&nbsp;&nbsp;Asesinos</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#"> <img src="images/iconoSurvivor.png" width="40" alt="">&nbsp;&nbsp;Supervivientes</a>
-                  </li>
                   </ul>
                 </div>
   
