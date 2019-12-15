@@ -13,7 +13,7 @@ $conn = create_con();
 $email=$_POST["emailAcceso"];
 $password=$_POST["passwordAcceso"];
 
-$query = "select email, name, password from users where email='".$email."'";
+$query = "select id, email, name, password from users where email='".$email."'";
 
 $resultado=$conn->query($query);
 

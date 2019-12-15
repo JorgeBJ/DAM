@@ -139,11 +139,6 @@ border-top-right-radius: 13px;
   border-style:solid; 
   border-color: darkred;
   background-color: rgba(89,1,1,0.23)
-  -webkit-transform: rotate(45deg);
-  -moz-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  -o-transform: rotate(45deg);
-  transform: rotate(45deg);
 }
 
 .hoverAddon:hover{

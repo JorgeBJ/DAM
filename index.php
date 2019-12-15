@@ -1,6 +1,6 @@
 <?php
 session_start();
-include "comprobarSesion.php";
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
