@@ -73,7 +73,7 @@
         <div class="row">
           <div class="col-12">
             <nav class="navbar navbar-expand-lg">
-              <a class="navbar-brand" href="index.php">  <img src="images/logo2.png" width="250" alt=""></a>
+              <a class="navbar-brand" href="index.php">  <img src="images/logoDBDMETA.png" width="250" alt=""></a>
               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menu">
                 <span class="fas fa-bars"></span>
               </button>
@@ -116,7 +116,10 @@
       </header>
     </div>
       <main>
-        <div class="container"></div>
+        <div class="container"> 
+       
+
+        </div>
         </div>
       </main>
   </div>

@@ -12,7 +12,7 @@
    // $password=$_POST["passwordRegistro"]; 
     $password = password_hash($passwordRegistro, PASSWORD_DEFAULT);
 
-$query= "INSERT INTO usuarios(name, email, password) VALUES('".$name."', '".$email."','".$password."')";
+$query= "INSERT INTO usuarios(nombre, email, password) VALUES('".$name."', '".$email."','".$password."')";
 
 $resultado=$conn->query($query);
 

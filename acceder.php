@@ -13,7 +13,7 @@ $conn = create_con();
 $email=$_POST["emailAcceso"];
 $password=$_POST["passwordAcceso"];
 
-$query = "select email, name, password from users where email='".$email."'";
+$query = "select id, email, nombre, password from usuarios where email='".$email."'";
 
 $resultado=$conn->query($query);
 
@@ -24,9 +24,9 @@ if ($resultado->num_rows > 0) {
     $hash=$userData["password"];
     if(password_verify($password, $hash)){
        // Password correcto!
-       $_SESSION["user"]=$userData["email"];
-       $_SESSION["name"]=$userData["name"];
-       $_SESSION["id"]=$userData["id"]
+       $_SESSION["usuario"]=$userData["email"];
+       $_SESSION["nombre"]=$userData["nombre"];
+       $_SESSION["id"]=$userData["id"];
        //Solo si es correcto cambio el msg por defecto.
        $msg="<h3>Usuario Correcto.</h3>";
     }  
@@ -50,10 +50,10 @@ kill_con($conn);
       </div>
     </div>
 
-<!--<script>
+<script>
 //Script para redirigir a index.php tras x segundos
 setTimeout(() => {
   window.location.href="index.php"; 
   exit();
 }, 2000);
-</script>-->
+</script>

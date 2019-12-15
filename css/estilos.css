@@ -1,10 +1,31 @@
 body{
   background-color: black;  
   color: dimgray;
+  height: 100%;
 }
 header{
   color: lightgrey;
   background-color: black;
+}
+.fondo{
+    background-image: url("../images/fondo4.jpg");
+    height: 100%; 
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-clip: content-box;
+  }
+
+.titulo{
+  padding-left: 7%;
+  padding-top: 10%;
+  color: white;
+  text-shadow: 5px 0px 2px rgba(99, 5, 5, 0.83);
+  text-shadow: 8px 0px 20px rgb(172, 42, 42);
+}
+
+html{
+  height: 100%;
 }
 a{
   color: lightgrey;
@@ -139,11 +160,6 @@ border-top-right-radius: 13px;
   border-style:solid; 
   border-color: darkred;
   background-color: rgba(89,1,1,0.23)
-  -webkit-transform: rotate(45deg);
-  -moz-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  -o-transform: rotate(45deg);
-  transform: rotate(45deg);
 }
 
 .hoverAddon:hover{
