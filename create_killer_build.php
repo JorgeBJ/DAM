@@ -16,15 +16,13 @@
         $perk4 = $_POST['seleccionPerk4Name'];
         $addon1 = $_POST['seleccionAddon1Name'];
         $addon2 = $_POST['seleccionAddon2Name'];
-        if(isset($_SESSION["id"])){
-            $createdBy = $_SESSION["id"];
-        }else{
-            $createdBy = NULL;
-        }
-        $fp=1;
-        $noob=1;
-    $query = "INSERT INTO killer_build (build_name, killer_id, perk1_id, perk2_id, perk3_id, perk4_id, addon1_id, addon2_id, isF2P, isNoob, created_by) VALUES ('".$name."',".$killerId.",".$perk1.",".$perk2.",".$perk3.",".$perk4.",".$addon1.",".$addon2.",".$fp.",".$noob.",".$createdBy.")";   $resultado=$conn->query($query);
-     if ($resultado === TRUE) {
+        $createdBy= "null";
+       $fp=1;
+       $noob=1;
+    $query = "INSERT INTO killer_build (build_name, killer_id, perk1_id, perk2_id, perk3_id, perk4_id, addon1_id, addon2_id, isF2P, isNoob, created_by) VALUES ('".$name."',".$killerId.",".$perk1.",".$perk2.",".$perk3.",".$perk4.",".$addon1.",".$addon2.",".$fp.",".$noob.",".$createdBy.")";
+    $resultado=$conn->query($query);
+    
+    if ($resultado === TRUE) {
         $mensaje="<h1>Build añadida</h1>";
     } else {
         $mensaje="<h1>No se ha podido añadir la build </h1><p>" . $conn->error."</p>";
