@@ -1,5 +1,4 @@
 <?php
-<<<<<<< HEAD
   session_start();
 ?>
 <!DOCTYPE>
@@ -19,35 +18,10 @@
         $addon1 = $_POST['seleccionObjetoAddon1Name'];
         $addon2 = $_POST['seleccionObjetoAddon2Name'];
        // $fp = checkFp($survivorId, $name, $perk1, $perk2, $perk3, $perk4, $º);
-       $fp=true;
+        $fp=true;
         //$noob = checkNoobie($survivorId, $name, $perk1, $perk2, $perk3, $perk4, $conn);
         $noob=true;
         $query = "INSERT INTO survivor_build(survivorBuildName, survivorId, perk1Id, perk2Id, perk3Id, perk4Id, itemId, addon1Id, addon2Id, isF2P, isNoob) VALUES ('".$name."','".$survivorId."','".$perk1."','".$perk2."','".$perk3."','".$perk4."','".$itemID."','".$addon1."','".$addon2."','".$fp."','".$noob."')";
-=======
-require("conexion.php");
-    if isset( $_POST['name'] && $_POST['survivorId']){
-        $conn = create_con();
-        $name = $_POST['name'];
-        $survivorId = $_POST['survivorId'];
-        $perk1 = $_POST['perk1'];
-        $perk2 = $_POST['perk2'];
-        $perk3 = $_POST['perk3'];
-        $perk4 = $_POST['perk4'];
-        $item = $_POST['item']
-        $addon1 = $_POST['addon1'];
-        $addon2 = $_POST['addon2'];
-        if(isset($_SESSION["id"]){
-            $createdBy= $_SESSION["id"];
-        }else{
-            $createdBy= NULL;
-        }
-        $fp = checkFp($survivorId, $name, $perk1, $perk2, $perk3, $perk4, $conn);
-        $noob = checkNoobie($survivorId, $name, $perk1, $perk2, $perk3, $perk4, $conn);
-        $query = 'INSERT INTO `survivor_build`(`build_name`, `survivor_id`, `perk1_id`, `perk2_id`, `perk3_id`, `perk4_id`, `item_id`, `addon1_id`, `addon2_id`, `isF2P`, `isNoob`, `created_by`) VALUES ("'.$name.'",'.$perk1.','.$perk2.','.$perk3.','.$perk4.','.$item.','.$addon1.','.$addon2.','.$fp.','.$noob.','.$createdBy.')';
-    }else{
-        die;
-    }
->>>>>>> 19b5600b3e4b0c808b2c530506cd885553f61e70
 
         $resultado=$conn->query($query);
 

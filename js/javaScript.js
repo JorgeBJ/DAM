@@ -547,6 +547,7 @@ function mostrarGuiasAsesinos(imagenAsesino, imagenSuperviviente){
   document.getElementById("superviviente").style.display="none";
   imagenSuperviviente.src="images/iconoSuperviviente.png";
   imagenAsesino.src="images/iconoAsesinoGlow.png";
+
 }
 
 function mostrarGuiasSupervivientes(imagenSuperviviente, imagenAsesino){
@@ -558,12 +559,222 @@ function mostrarGuiasSupervivientes(imagenSuperviviente, imagenAsesino){
   imagenAsesino.src="images/iconoAsesino.png";
 }
 
+////RECUPERACION BUILD ASESINOS////
+function recuperarGuiasAsesino(seleccionado, killerID){
 
-function recuperarGuiasAsesino(elemento, killerID){
+  var elementosAsesinos = document.querySelectorAll("div.hover-div");
+  for(i=0; i<elementosAsesinos.length; i++){
+    elementosAsesinos[i].classList.remove("seleccionado");
+  }
+  seleccionado.classList.add("seleccionado");
+  var tabla = document.getElementById("bodyAsesino");
+  //Para repintar la tabla cada vez que se recuperen nuevos 
+  tabla.innerText="";
   console.log("Se recuperan las guias para el asesino con ID: " + killerID);
-  document.getElementById("ocultoAsesino").display="inline";
+  document.getElementById("ocultoAsesino").display="inline";  
+    
+  conexion2=new XMLHttpRequest();
+  conexion2.onreadystatechange = setTimeout(recuperarAddonsKillersBuilds, 100);
+  conexion2.open('GET','getAddonsKillersBuilds.php?id='+ killerID, true);
+  conexion2.send();
 
+  conexion=new XMLHttpRequest();
+  conexion2.onreadystatechange = setTimeout(recuperarPerksKillersBuilds, 100);
+
+  conexion.open('GET','getKillersBuilds.php?id='+ killerID, true);
+  conexion.send();
 }
+
+function recuperarAddonsKillersBuilds(){
+  if(conexion2.readyState == 4)
+  {
+    var datos=conexion2.responseText;
+    var buildsArray = JSON.parse(datos);
+    console.log(buildsArray)
+    //La tabla la tengo llenar con los datos que he recuperado
+         var tabla = document.getElementById("bodyAsesino");
+         //Para repintar la tabla cada vez que se recuperen nuevos 
+        //tabla.innerText="";
+        var nombreBuild = buildsArray[0][0];
+        var fila   = tabla.insertRow(-1);
+        var celda  = fila.insertCell(0);
+        celda.innerText=buildsArray[0].build_name;
+         for(i=0; i <buildsArray.length;i++ ){
+            if(nombreBuild==buildsArray[i].build_name){
+              console.log("Creo una celda de la tabla con los datos de " + nombreBuild)
+              var celda  = fila.insertCell(-1); //-1 la inserta al final
+              celda.innerHTML =  "<img id='imagenBuild' title='' src='"+  buildsArray[i].logo   + "' width='50' alt=''>";
+            }
+            else {
+              nombreBuild=buildsArray[i][0];
+              var fila   = tabla.insertRow(-1);
+              var celda  = fila.insertCell(0);
+              celda.innerText=buildsArray[i].build_name;
+              //Tengo que añadirlo por que si no falta la ultima celda de cada build menos de la primera
+              var celda  = fila.insertCell(-1); //-1 la inserta al final
+              celda.innerHTML =  "<img id='imagenBuild' title='' src='"+  buildsArray[i].logo   + "' width='50' alt=''>";
+            }
+          }
+  }      
+}
+
+function recuperarPerksKillersBuilds(){
+  if(conexion.readyState == 4)
+  {
+    var datos=conexion.responseText;
+    var buildsArray = JSON.parse(datos);
+    console.log(buildsArray)
+    //La tabla la tengo llenar con los datos que he recuperado
+        var filas = document.getElementById("tablaKillers").rows;
+        //En la cada fila tengo que añadir los 4 perks que tiene cada build
+        for(j=1; j<filas.length;j++)
+         for(i=0; i <4;i++ ){
+              var celda  = filas[j].insertCell(-1); //-1 la inserta al final
+              celda.innerHTML =  "<img id='imagenBuild' title='' src='"+  buildsArray[i].logo   + "' width='50' alt=''>";
+            }
+           
+   }
+}
+
+
+function recuperarPerksKillersBuilds_OLD(){
+  if(conexion.readyState == 4)
+  {
+    var datos=conexion.responseText;
+    var buildsArray = JSON.parse(datos);
+    console.log(buildsArray)
+    //La tabla la tengo llenar con los datos que he recuperado
+        var filas = document.getElementById("tablaKillers").rows;
+        var nombreBuild = buildsArray[0][0];
+        //En la primera fila tengo que añadir los 4 perkls que tiene cada build
+         for(i=0; i <buildsArray.length;i++ ){
+            if(nombreBuild==buildsArray[i].build_name){
+              console.log("Creo una celda de la tabla con los datos de " + nombreBuild)
+              var celda  = fila.insertCell(-1); //-1 la inserta al final
+              celda.innerHTML =  "<img id='imagenBuild' title='' src='"+  buildsArray[i].logo   + "' width='50' alt=''>";
+            }
+            else {
+              nombreBuild=buildsArray[i][0];
+              var fila   = tabla.insertRow(-1);
+              var celda  = fila.insertCell(0);
+              celda.innerText=buildsArray[i].build_name;
+              //Tengo que añadirlo por que si no falta la ultima celda de cada build menos de la primera
+              var celda  = fila.insertCell(-1); //-1 la inserta al final
+              celda.innerHTML =  "<img id='imagenBuild' title='' src='"+  buildsArray[i].logo   + "' width='50' alt=''>";
+            }
+          }
+
+        //  var fila   = tabla.insertRow(0);
+          // Inserta una celda en la fila, en el índice 0
+         // var celda  = fila.insertCell(0);
+         // celda.innerHTML =  "<img id='imagenBuild' title='' src='"+     + "' width='50' alt=''>";
+  }      
+}
+
+//recuperacion builds superviventes//
+
+function recuperarGuiasSuperviviente(seleccionado, supervivienteID){
+  
+  var elementosAsesinos = document.querySelectorAll("div.hover-div");
+  for(i=0; i<elementosAsesinos.length; i++){
+    elementosAsesinos[i].classList.remove("seleccionado");
+  }
+  seleccionado.classList.add("seleccionado");
+  var tabla = document.getElementById("bodySupervivientes");
+  //Para repintar la tabla cada vez que se recuperen nuevos 
+  tabla.innerText="";
+  console.log("Se recuperan las guias para el superviviente con ID: " + supervivienteID);
+  document.getElementById("ocultoSuperviviente").display="inline";  
+  
+  conexion3=new XMLHttpRequest();
+  conexion3.onreadystatechange = setTimeout(recuperarItemSupervivienteBuilds, 100);
+  conexion3.open('GET','getItemSupervivientesBuilds.php?id='+ supervivienteID, true);
+  conexion3.send();
+ 
+  conexion2=new XMLHttpRequest();
+  conexion2.onreadystatechange = setTimeout(recuperarAddonsSupervivienteBuilds, 100);
+  conexion2.open('GET','getAddonsSupervivientesBuilds.php?id='+ supervivienteID, true);
+  conexion2.send();
+
+  conexion=new XMLHttpRequest();
+  conexion.onreadystatechange = setTimeout(recuperarPerksSupervivienteBuilds, 100);
+
+  conexion.open('GET','getPerksSupervivientesBuilds.php?id='+ supervivienteID, true);
+  conexion.send(); 
+}
+
+function recuperarItemSupervivienteBuilds(){
+  if(conexion3.readyState == 4)
+  {
+    var datos=conexion3.responseText;
+    var buildsArray = JSON.parse(datos);
+    console.log(buildsArray)
+    //La tabla la tengo llenar con los datos que he recuperado
+         var tabla = document.getElementById("bodySupervivientes");
+         //Para repintar la tabla cada vez que se recuperen nuevos 
+        //tabla.innerText="";
+        var nombreBuild = buildsArray[0].survivorBuildName;
+        console.log(nombreBuild);
+        var fila   = tabla.insertRow(0);
+        var celda  = fila.insertCell(0);
+        celda.innerText=buildsArray[0].survivorBuildName;
+         for(i=0; i <buildsArray.length;i++ ){
+            if(nombreBuild==buildsArray[i].survivorBuildName){
+              console.log("Creo una celda de la tabla con los datos de " + nombreBuild)
+              var celda  = fila.insertCell(-1); //-1 la inserta al final
+              celda.innerHTML =  "<img id='imagenBuild' title='' src='"+  buildsArray[i+j*2-2].logo   + "' width='50' alt=''>";
+            }
+            else {
+              nombreBuild=buildsArray[i][0];
+              var fila   = tabla.insertRow(-1);
+              var celda  = fila.insertCell(0);
+              celda.innerText=buildsArray[i].survivorBuildName;
+              //Tengo que añadirlo por que si no falta la ultima celda de cada build menos de la primera
+              var celda  = fila.insertCell(-1); //-1 la inserta al final
+              celda.innerHTML =  "<img id='imagenBuild' title='' src='"+  buildsArray[i+j*2-2].logo   + "' width='50' alt=''>";
+            }
+          }
+  }      
+}
+
+function recuperarAddonsSupervivienteBuilds(){
+  if(conexion2.readyState == 4)
+  {
+    var datos=conexion2.responseText;
+    var buildsArray = JSON.parse(datos);
+    console.log("AddonsArray:");
+    console.log(buildsArray)
+    //La tabla la tengo llenar con los datos que he recuperado
+        var filas = document.getElementById("tablaSurvivors").rows;
+        //En la cada fila tengo que añadir los 2 addons que tiene cada build
+        for(j=1; j<filas.length;j++)
+         for(i=0; i <2;i++ ){
+              var celda  = filas[j].insertCell(-1); //-1 la inserta al final
+              celda.innerHTML =  "<img id='imagenBuild' title='' src='"+  buildsArray[i+j*2-2].logo   + "' width='50' alt=''>"; 
+            }
+           
+   }
+}
+
+function recuperarPerksSupervivienteBuilds(){
+  if(conexion.readyState == 4)
+  {
+    var datos=conexion.responseText;
+    var buildsArray = JSON.parse(datos);
+    console.log(buildsArray.length);
+    console.log(buildsArray);
+    //La tabla la tengo llenar con los datos que he recuperado
+        var filas = document.getElementById("tablaSurvivors").rows;
+        //En la cada fila tengo que añadir los 4 perks que tiene cada build
+        for(j=1; j<filas.length;j++)
+         for(i=0; i <4;i++ ){
+              var celda  = filas[j].insertCell(-1); //-1 la inserta al final
+              celda.innerHTML =  "<img id='imagenBuild' title='' src='"+  buildsArray[i+j*2-2].photo   + "' width='50' alt=''>";
+            }
+           
+   }
+}
+
 
 
 function comprobarBuildSuperviviente(){

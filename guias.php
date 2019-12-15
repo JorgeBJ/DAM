@@ -63,37 +63,23 @@ var survivorID;
             ?>
           </div>
           <div class="col-5 offset-sm-1" id="ocultoAsesino">
-            <table class="table">
+            <table class="table" id="tablaKillers">
                 <thead>
                     <tr>
-                    <th scope="col" colspan="2" class="text-center">Addons</th>
-                    <th scope="col" colspan="4" class="text-center" >Perks</th>
+                    <th></th>  
+                    <th scope="col" colspan="2" class="text-center align-middle">Addons</th>
+                    <th scope="col" colspan="4" class="text-center align-middle" >Perks</th>
                     </tr>
                 </thead>
                 <tbody id="bodyAsesino">
                     <tr>
-                    <td>Addon 1</td>
-                    <td>Addon 2</td>
-                    <td>Perk 1</td>
-                    <td>Perk 2</td>
-                    <td>Perk 3</td>
-                    <td>Perk 4</td>
-                    </tr>
-                    <tr>                
-                    <td>Addon 1</td>
-                    <td>Addon 2</td>
-                    <td>Perk 1</td>
-                    <td>Perk 2</td>
-                    <td>Perk 3</td>
-                    <td>Perk 4</td>
-                    </tr>
-                    <tr>
-                    <td>Addon 1</td>
-                    <td>Addon 2</td>
-                    <td>Perk 1</td>
-                    <td>Perk 2</td>
-                    <td>Perk 3</td>
-                    <td>Perk 4</td>
+                    <td class="align-middle">Nombre de la build</td>
+                    <td> <img id="imagenBuild" title='' src='images\iconoAsesino.png' width='50' alt=''>  </td>
+                    <td> <img id="imagenBuild" title='' src='images\iconoAsesino.png' width='50' alt=''>  </td>
+                    <td> <img id="imagenBuild" title='' src='images\iconoAsesino.png' width='50' alt=''>  </td>
+                    <td> <img id="imagenBuild" title='' src='images\iconoAsesino.png' width='50' alt=''>  </td>
+                    <td> <img id="imagenBuild" title='' src='images\iconoAsesino.png' width='50' alt=''>  </td>
+                    <td> <img id="imagenBuild" title='' src='images\iconoAsesino.png' width='50' alt=''>  </td>
                     </tr>
                 </tbody>
                 </table>
@@ -115,7 +101,7 @@ var survivorID;
 
                 while (mysqli_stmt_fetch($stmt)) {
                   echo  
-                  "<div class='col-3 text-center hover-div' style='margin-bottom: 2.5rem;'  onclick='seleccionarAsesino(this, $survivorID , power)'>
+                  "<div class='col-3 text-center hover-div' style='margin-bottom: 2.5rem;'  onclick='recuperarGuiasSuperviviente(this, $survivorID)'>
                     <img title='".$survivorName."' src='$photo' width='100' alt=''>
                   </div>";
                 }
@@ -129,44 +115,27 @@ var survivorID;
             ?>
            </div>
            <div class="col-5 offset-sm-1" id="ocultoSuperviviente">
-            <table class="table">
+            <table class="table" id="tablaSurvivors">
                 <thead>
                     <tr>
+                    <th></th>
+                    <th scope="col" colspan="3" class="text-center" >Objeto</th>
                     <th scope="col" colspan="4" class="text-center">Perks</th>
-                    <th scope="col" colspan="4" class="text-center" >Objetos</th>
-                    
+                  
+    
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="bodySupervivientes">
                     <tr>
+                 
+                    <td>Objeto</td>
+                    <td>Objeto Addon 1</td>
+                    <td>Objeto Addon 2</td>    
                     <td>Perk 1</td>
                     <td>Perk 2</td>
                     <td>Perk 3</td>
                     <td>Perk 4</td>
-                    <td>Objeto 1</td>
-                    <td>Objeto 2</td>
-                    <td>Objeto 3</td>
-                    <td>Objeto 4</td>          
-                    </tr>
-                    <tr>
-                    <td>Perk 1</td>
-                    <td>Perk 2</td>
-                    <td>Perk 3</td>
-                    <td>Perk 4</td>
-                    <td>Objeto 1</td>
-                    <td>Objeto 2</td>
-                    <td>Objeto 3</td>
-                    <td>Objeto 4</td>
-                    </tr>
-                    <tr>
-                    <td>Perk 1</td>
-                    <td>Perk 2</td>
-                    <td>Perk 3</td>
-                    <td>Perk 4</td>
-                    <td>Objeto 1</td>
-                    <td>Objeto 2</td>
-                    <td>Objeto 3</td>
-                    <td>Objeto 4</td>
+     
                     </tr>
                 </tbody>
                 </table>

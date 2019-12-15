@@ -17,11 +17,13 @@
         $perk4 = $_POST['seleccionPerk4Name'];
         $addon1 = $_POST['seleccionAddon1Name'];
         $addon2 = $_POST['seleccionAddon2Name'];
-        if(isset($_SESSION["id"]){
-            $createdBy= $_SESSION["id"];
-        }else{
-            $createdBy= NULL;
-        }       // $fp = checkFp($killer_id, $nombre, $perk1, $perk2, $perk3, $perk4, $conn);
+        $createdBy= "null";
+    //    if(isset($_SESSION["id"]){
+    //        $createdBy= $_SESSION["id"];
+     //   }else{
+     //       $createdBy= NULL;
+      //  }       
+       // $fp = checkFp($killer_id, $nombre, $perk1, $perk2, $perk3, $perk4, $conn);
        //$noob = checkNoobie($killer_id, $name, $perk1, $perk2, $perk3, $perk4, $conn);
        $fp=1;
        $noob=1;
